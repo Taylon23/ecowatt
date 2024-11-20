@@ -1,0 +1,215 @@
+html,
+body {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  background-color: #fafafa;
+  margin: 0;
+  padding: 0;
+}
+
+.NavBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: #203359; */
+  border: 1px solid #ccc;
+  color: #fff;
+  padding: 1em 1em 0 0;
+}
+
+.content-logo img {
+  color: #60bf78;
+  width: 200px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.content-menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.content-menu a {
+  color: #1a1a1a;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.content-menu a:hover {
+  color: #559e67;
+}
+
+.content-icon-links {
+  position: relative;
+  margin: 5px 0;
+}
+
+.content-icon-links .line-hover::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px; /* Espessura da linha */
+  background-color: #60bf78; /* Cor da linha */
+  transition: width 0.3s ease-in-out; /* Transição suave para aumentar a linha */
+}
+
+.content-icon-links .line-hover {
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out; /* Adiciona transição suave de cor */
+}
+
+/* Efeito de hover */
+.content-icon-links .line-hover:hover::after {
+  width: 100%; /* A linha se expande quando o mouse passa sobre o link */
+}
+
+.content-icon-links .line-hover:hover {
+  color: #60bf78; /* Altera a cor do texto quando o mouse passa sobre o link */
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  z-index: 1000;
+}
+
+.dropdown-menu a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+.content-icon-links {
+  display: flex;
+  align-items: center;
+  grid-area: 5px;
+}
+
+/* Menu Hamburguer */
+.menu-hamburger {
+  display: none;
+  color: #1a1a1a;
+}
+
+#mobile-nav {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  top: 11%;
+  right: 0;
+}
+
+#mobile-nav a {
+  padding: 10px;
+  color: #1a1a1a;
+}
+
+@media (max-width: 768px) {
+  .menu-hamburger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .content-menu {
+    display: none;
+  }
+
+  #mobile-nav.active {
+    display: flex;
+  }
+}
+
+main {
+  min-height: 75vh;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+}
+
+.footer-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.footer-section h4 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin: 5px 0;
+}
+
+.footer-section ul li a {
+  color: #60bf78;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.social-icon {
+  color: #60bf78;
+  font-size: 1.5em;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.social-icon:hover {
+  color: #fff;
+}
+
+.dieritos-autorais {
+  text-align: center;
+}

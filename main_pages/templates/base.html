@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/main_pages/base.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    {% block link_extras %} {% endblock %}
+  </head>
+  <body>
+    <header>
+      <nav class="NavBar">
+        <div class="content-logo">
+          <img src="{% static 'img/ECOWATT.png' %}" alt="" />
+        </div>
+        <div class="content-menu">
+          <div class="content-icon-links">
+            <a href="" class="line-hover"><i class="fas fa-home"></i> Home</a>
+          </div>
+          <div class="content-icon-links dropdown">
+            <a href="#" class="dropdown-toggle">
+              <i class="fas fa-cogs"></i> Recursos
+            </a>
+            <div class="dropdown-menu">
+              <a href="#">Recurso 1</a>
+              <a href="#">Recurso 2</a>
+              <a href="#">Recurso 3</a>
+            </div>
+          </div>
+          <div class="content-icon-links">
+            <a href="" class="line-hover"
+              ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+            >
+          </div>
+          <div class="content-icon-links">
+            <a href="" class="line-hover"
+              ><i class="fas fa-info-circle"></i> Sobre</a
+            >
+          </div>
+        </div>
+        <!-- Incluir o menu hamburguer responsivo -->
+      {% include 'menu_mobile.html' %}
+      </nav>
+    </header>
+
+    <div class="content-main">
+      <main>{% block main %}{% endblock %}</main>
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <!-- Informações de Contato -->
+        <div class="footer-section">
+          <h4>Contato</h4>
+          <p>Endereço: Rua das Flores, 123</p>
+          <p>Telefone: (11) 99999-9999</p>
+          <p>Email: contato@ecowatt.com</p>
+        </div>
+
+        <!-- Links Úteis -->
+        <div class="footer-section">
+          <h4>Links Úteis</h4>
+          <ul>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+        </div>
+
+        <!-- Redes Sociais -->
+        <div class="footer-section">
+          <h4>Siga-nos</h4>
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <!-- Créditos -->
+      <div class="footer-section dieritos-autorais">
+        <p>&copy; 2024 ECOWATT. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="{% static 'js/main_pages/menuMobile.js' %}"></script>
+    <!-- Aqui você pode adicionar o script para o funcionamento do menu -->
+  </body>
+</html>
