@@ -1,0 +1,185 @@
+{% extends 'base.html' %} {% load static %} {% block link_extras %}
+<link rel="stylesheet" href="{% static 'css/main_pages/home.css' %}" />
+{% endblock %} 
+{% block title %}Home{% endblock %}
+{% block main %}
+<div class="content-banner">
+  <div class="titulo-banner">
+    <h1>Eficiência Energética</h1>
+    <p>Economize energia e cuide do planeta!</p>
+  </div>
+  <div class="content-descricao-banner">
+    <p>
+      Eficiência energética é a chave para um futuro sustentável. Pequenas
+      ações, como trocar lâmpadas por modelos LED e desligar aparelhos em
+      stand-by, podem reduzir o consumo de energia e preservar recursos
+      naturais. Junte-se a essa mudança e faça a diferença para o planeta e para
+      o seu bolso!
+    </p>
+  </div>
+</div>
+
+<!-- Sessão: O que é Eficiência Energética -->
+<section class="section-info section-home">
+  <img
+    src="{% static 'img/main_pages/eficiencia-energetica-home.jpg' %}"
+    alt=""
+  />
+  <div>
+    <h2>O que é Eficiência Energética?</h2>
+    <p>
+      Eficiência energética é utilizar a energia de forma inteligente, reduzindo
+      desperdícios sem comprometer a qualidade de vida. Isso inclui o uso de
+      tecnologias mais avançadas e hábitos conscientes para minimizar o consumo
+      de energia.
+    </p>
+    <p>
+      Implementar a eficiência energética é um passo fundamental para garantir
+      um futuro mais sustentável, onde o uso responsável da energia contribua
+      para preservar o meio ambiente para as próximas gerações. Seja por meio de
+      avanços tecnológicos ou de simples ações no dia a dia, como apagar luzes
+      desnecessárias ou utilizar equipamentos mais eficientes, cada gesto conta
+      na construção de um mundo melhor.
+    </p>
+  </div>
+</section>
+
+<!-- Sessão: Dicas Práticas -->
+<section class="section-dicas section-home">
+  <div class="content-dicas-img">
+    <div class="dicas-container">
+      <div class="dica-item">
+        <h2>Dicas Práticas para Economia de Energia</h2>
+        <h3>Substitua lâmpadas incandescentes por LEDs</h3>
+        <p>
+          As lâmpadas LEDs são muito mais eficientes em termos de consumo de
+          energia e durabilidade em comparação com as lâmpadas incandescentes
+          tradicionais. Além de economizar até 80% de energia, os LEDs também
+          têm uma vida útil muito mais longa, reduzindo a necessidade de
+          substituições frequentes.
+        </p>
+      </div>
+
+      <div class="dica-item">
+        <h3>
+          Desligue aparelhos eletrônicos da tomada quando não estiverem em uso
+        </h3>
+        <p>
+          Mesmo em modo de espera, muitos aparelhos eletrônicos consomem
+          energia. Desligá-los da tomada quando não estiverem em uso pode
+          reduzir significativamente o consumo de energia, ajudando a economizar
+          na conta de luz e contribuir para a conservação de energia.
+        </p>
+      </div>
+
+      <div class="dica-item">
+        <h3>
+          Utilize eletrodomésticos com selo Procel de eficiência energética
+        </h3>
+        <p>
+          O selo Procel indica que o eletrodoméstico foi avaliado e atende aos
+          padrões de eficiência energética estabelecidos pelo INMETRO.
+          Equipamentos com este selo utilizam menos energia para realizar a
+          mesma função, ajudando a reduzir o impacto ambiental e a economizar na
+          conta de energia.
+        </p>
+      </div>
+
+      <div class="dica-item">
+        <h3>Regule o ar-condicionado para temperaturas moderadas</h3>
+        <p>
+          Configurar o ar-condicionado em uma temperatura entre 23°C e 25°C é
+          ideal para o conforto e também para a economia de energia.
+          Temperaturas muito baixas fazem com que o equipamento trabalhe mais
+          intensamente, consumindo mais energia desnecessariamente.
+        </p>
+      </div>
+    </div>
+
+    <div class="dica-image">
+      <img
+        src="{% static 'img/main_pages/eficiencia-energetica2-home.png' %}"
+        alt="Imagem ilustrativa sobre eficiência energética"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- Sessão: Benefícios da Eficiência Energética -->
+<section class="section-beneficios section-home">
+  <h2>Benefícios</h2>
+  <div class="beneficios-container">
+    <div class="beneficio">
+      <i class="fas fa-leaf"></i>
+      <h3>Ambiental</h3>
+      <p>
+        Menos consumo de energia reduz a emissão de gases poluentes e preserva
+        recursos naturais.
+      </p>
+    </div>
+    <div class="beneficio">
+      <i class="fas fa-wallet"></i>
+      <h3>Econômico</h3>
+      <p>
+        Economia na conta de luz ao adotar práticas e equipamentos eficientes.
+      </p>
+    </div>
+    <div class="beneficio">
+      <i class="fas fa-lightbulb"></i>
+      <h3>Conforto</h3>
+      <p>Maior durabilidade de equipamentos e ambientes otimizados.</p>
+    </div>
+  </div>
+</section>
+<section class="section-eficiencia-energetica">
+  <div class="container">
+    <h2>Compartilhe Sua Opinião sobre Eficiência Energética</h2>
+    <p>
+      Sua opinião é importante para nós! Preencha o formulário abaixo para
+      compartilhar seus pensamentos sobre como melhorar a eficiência energética
+      e suas práticas em casa ou no trabalho.
+    </p>
+
+    <!-- Formulário -->
+    <form action="/enviar_formulario" method="POST" class="form-eficiencia">
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input
+          type="text"
+          id="nome"
+          name="nome"
+          required
+          placeholder="Seu nome completo"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="Seu endereço de e-mail"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Sua Opinião:</label>
+        <textarea
+          id="descricao"
+          name="descricao"
+          rows="5"
+          required
+          placeholder="Compartilhe sua experiência ou opinião sobre o tema de eficiência energética"
+        ></textarea>
+      </div>
+
+      <div class="form-group content-button">
+        <button type="submit" class="btn-enviar">Enviar</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+{% endblock %}
