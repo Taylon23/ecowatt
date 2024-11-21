@@ -19,7 +19,27 @@
     {% block link_extras %} {% endblock %}
   </head>
   <body>
+    {% block navBar %}
+
     <header>
+      {% if not request.user.is_authenticated %}
+      <div class="content-login">
+        <div class="login">
+          <a href="{% url 'login' %}" class="login-link">Entrar</a>
+          <div class="bar-vertical"></div>
+          <a href="{% url 'register' %}" class="login-link">Registrar</a>
+        </div>
+      </div>
+      {% else %}
+      <div class="content-login">
+        <form id="logout-form" method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="button" class="login-link" onclick="confirmLogout()">Encerrar Sessão</button>
+        </form>
+      </div>
+
+      {% endif %}
+
       <nav class="NavBar">
         <div class="content-logo">
           <img src="{% static 'img/main_pages/ECOWATT.png' %}" alt="" />
@@ -50,13 +70,17 @@
           </div>
         </div>
         <!-- Incluir o menu hamburguer responsivo -->
-      {% include 'menu_mobile.html' %}
+        {% include 'menu_mobile.html' %}
       </nav>
     </header>
+
+    {% endblock %}
 
     <div class="content-main">
       <main>{% block main %}{% endblock %}</main>
     </div>
+
+    {% block footer %}
 
     <footer>
       <div class="footer-container">
@@ -92,7 +116,12 @@
       </div>
     </footer>
 
+    {% endblock %}
+
     <script src="{% static 'js/main_pages/menuMobile.js' %}"></script>
-    <!-- Aqui você pode adicionar o script para o funcionamento do menu -->
+    <script src="{% static 'js/main_pages/logout.js' %}"></script>
+
+
+    {% block script %} {% endblock %}
   </body>
 </html>

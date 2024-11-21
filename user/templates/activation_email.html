@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Confirme seu email</title>
+  </head>
+  <body>
+    <img width="100px" src="{{ STATIC_URL }}img/main_pages/ECOWATT.png" alt="">
+    <p>Olá {{ user.username }},</p>
+    <p>
+      Para completar o seu cadastro, por favor, clique no link abaixo para
+      ativar a sua conta:
+    </p>
+    <a href="http://{{ domain }}/user/activate/{{ uid }}/{{ token }}/"
+      >Clique aqui para ativar sua conta</a
+    >
+    <br />
+    <p>Atenciosamente, Ecowaat</p>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+#logomarca-img {
+  width: 200px;
+  height: 50px;
+  object-fit: cover;
+  margin: 1em 0 0 1em;
+}
+.login-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 80vh;
+  gap: 30px;
+  padding: 20px;
+}
+
+/* Estilo da imagem */
+.login-image img {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.login-form form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo do formulário */
+.login-form {
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  width: 30%;
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #79f297; /* Verde claro */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #1a1a1a;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 94%;
+  padding: 10px;
+  border: 1px solid #203359; /* Azul médio */
+  border-radius: 5px;
+  color: #1a1a1a;
+  font-size: 1rem;
+}
+
+.form-group input::placeholder {
+  color: #c2d2f2; /* Azul fraco */
+}
+
+.form-group input:focus {
+  border-color: #79f297; /* Verde claro */
+  outline: none;
+}
+
+/* Botão de envio */
+.btn-submit {
+  width: 100%;
+  padding: 10px;
+  background-color: #60bf78; /* Verde escuro */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #79f297; /* Verde claro */
+}
+
+.content-singup-login {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #1a1a1a;
+}
+.content-singup-login span a{
+  color: #61cc7c;
+  transition: all .3s ease;
+}
+
+.content-singup-login span a:hover{
+    color: #60bf78;
+}
+
+.messages .alert {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.messages .alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.messages .alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+}
+
+
+@media (max-width: 768px){
+  .login-image img{
+    display: none;
+  }
+  .login-container{
+    gap: 0;
+  }
+  .login-form{
+    width: 100%;
+  }
+}

@@ -15,18 +15,56 @@ body {
   padding: 0;
 }
 
+.content-login {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: .5em 0;
+}
+.content-login button{
+  font-size: 1rem;
+  background-color: transparent;
+}
+.login {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  gap: 10px; 
+}
+
+/* Estilo dos links */
+.login-link {
+  text-decoration: none;
+  color: #60bf78;
+  font-weight: bold; 
+  transition: color 0.3s ease;
+  padding: .3em .5em;
+  border: solid 1px #ccc;
+  border-radius: 3px;
+}
+
+.login-link:hover {
+  color: #559e67; 
+  background-color: #ceeef1;
+}
+
+
+.bar-vertical {
+  width: 2px;
+  height: 20px; 
+  background-color: #ccc;
+}
+
 .NavBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* background-color: #203359; */
-  border: 1px solid #ccc;
   color: #fff;
   padding: 1em 1em 0 0;
 }
 
 .content-logo img {
-  color: #60bf78;
   width: 200px;
   height: 50px;
   object-fit: cover;
@@ -41,7 +79,6 @@ body {
 .content-menu a {
   color: #1a1a1a;
   transition: all 0.3s ease;
-  font-weight: 600;
 }
 
 .content-menu a:hover {

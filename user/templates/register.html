@@ -1,20 +1,91 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    <h2>Register</h2>
+{% extends 'base.html' %} {% load static %} 
 
+{% block navBar %}
+<a href="{% url 'home' %}"
+  ><img
+    id="logomarca-img"
+    src="{% static 'img/main_pages/ECOWATT.png' %}"
+    alt=""
+/></a>
+
+    
+{% endblock %} 
+
+{% block title %}
+    Registrar
+{% endblock %}
+
+{% block link_extras %}
+<link rel="stylesheet" href="{% static 'css/user/form-login-register.css' %}" />
+{% endblock %} {% block main %}
+<div class="login-container">
+  <div class="login-image">
+    <img src="{% static 'img/user/img-login.png' %}" alt="Imagem decorativa" />
+  </div>
+  <div class="login-form">
+    <h2>Criar conta</h2>
     <form method="POST">
-        {% csrf_token %}
-        {{form.email}}
-        {{form.username}}
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_email">Email</label>
+        {{ form.email }}
+        {% if form.email.errors %}
+        <div class="error-message">
+          {% for error in form.email.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      
+      <div class="form-group">
+        <label for="id_username">Usuário</label>
+        {{ form.username }}
+        {% if form.username.errors %}
+        <div class="error-message">
+          {% for error in form.username.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      
+      <div class="form-group">
+        <label for="id_password1">Senha</label>
         {{ form.password1 }}
+        {% if form.password1.errors %}
+        <div class="error-message">
+          {% for error in form.password1.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      
+      <div class="form-group">
+        <label for="id_password2">Confirmar Senha</label>
         {{ form.password2 }}
-        <button type="submit">Register</button>
+        {% if form.password2.errors %}
+        <div class="error-message">
+          {% for error in form.password2.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      
+      <button type="submit" class="btn-submit">Entrar</button>
+      
+      <div class="content-singup-login">
+        <p>
+          Já possui uma conta?
+          <span><a href="{% url 'login' %}">Entrar</a></span>
+        </p>
+      </div>
+      
     </form>
-</body>
-</html>
+  </div>
+</div>
+{% endblock %} {% block footer %}
+<!-- Rodapé pode ser adicionado aqui, se necessário -->
+{% endblock %}

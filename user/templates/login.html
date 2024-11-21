@@ -1,18 +1,79 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    <h2>Login</h2>
+{% extends 'base.html' %} {% load static %} {% block navBar %}
+<a href="{% url 'home' %}"
+  ><img
+    id="logomarca-img"
+    src="{% static 'img/main_pages/ECOWATT.png' %}"
+    alt=""
+/></a>
+    
+{% endblock %} 
+{% block title %}
+    Login
+{% endblock %}
+{% block link_extras %}
+<link rel="stylesheet" href="{% static 'css/user/form-login-register.css' %}" />
+{% endblock %} {% block main %}
+<div class="login-container">
+  <div class="login-image">
+    <img src="{% static 'img/user/img-login.png' %}" alt="Imagem decorativa" />
+  </div>
 
+  <div class="login-form">
+    <h2>Entrar</h2>
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
     <form method="POST">
-        {% csrf_token %}
-        {{form.username}}
-        {{ form.password}}
-        <button type="submit">logar</button>
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_username">Usuário</label>
+        {{ form.username }}
+        {% if form.username.errors %}
+        <div class="error-message">
+          {% for error in form.username.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="id_password">Senha</label>
+        {{ form.password }}
+        {% if form.password.errors %}
+        <div class="error-message">
+          {% for error in form.password.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      {% if form.non_field_errors %}
+      <div class="error-message">
+        {% for error in form.non_field_errors %}
+          <p>{{ error }}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <button type="submit" class="btn-submit">Entrar</button>
+
+      <div class="content-singup-login">
+        <p>
+          Ainda não possui uma conta?
+          <span><a href="{% url 'register' %}">Criar conta.</a></span>
+        </p>
+      </div>
     </form>
-</body>
-</html>
+  </div>
+</div>
+{% endblock %} {% block footer %}
+<!-- Rodapé pode ser adicionado aqui, se necessário -->
+{% endblock %}
