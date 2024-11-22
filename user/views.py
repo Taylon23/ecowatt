@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.contrib.auth.decorators import login_required
 from django.utils.encoding import force_bytes, force_str
 from django.conf import settings
 from django.contrib.auth.tokens import default_token_generator
@@ -9,6 +10,8 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import SignUpForm
+from .forms import ProfileForm
+from django.contrib.auth.views import LoginView
 from django.contrib import messages
 
 
@@ -34,7 +37,6 @@ def register(request):
                     'domain': current_site.domain,
                     'uid': uid,
                     'token': token,
-                    'STATIC_URL': settings.STATIC_URL,  # Passa a URL estática no contexto
                 }
             )
 
@@ -42,11 +44,16 @@ def register(request):
             send_mail(
                 mail_subject,
                 message,
-                settings.EMAIL_HOST_USER,
+                'noreply@yourdomain.com',  # Substitua pelo e-mail de envio
                 [user.email],
                 fail_silently=False,
                 html_message=message,  # Definir o conteúdo do e-mail como HTML
             )
+
+            # Adicionar mensagem de sucesso
+            messages.success(
+                request, 'Um link de ativação foi enviado para seu e-mail. Por favor, ative sua conta para fazer login.')
+
             return redirect('login')  # Redireciona para a página de login
     else:
         form = SignUpForm()
@@ -67,3 +74,34 @@ def activate(request, uidb64, token):
         return redirect('login')  # Redireciona para a página de login
     else:
         return HttpResponse("Link de ativação inválido!")
+
+
+@login_required
+def perfil(request):
+    perfil = request.user
+
+    return render(request, 'perfil.html', {'perfil': perfil})
+
+
+@login_required
+def editar_perfil(request):
+    perfil = request.user.profile  # Pega o perfil do usuário atual
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=perfil)
+        if form.is_valid():
+            form.save()  # Salva as alterações no perfil
+            messages.success(request, 'Perfil atualizado com sucesso!')
+            return redirect('perfil')  # Redireciona para a página de perfil
+    else:
+        form = ProfileForm(instance=perfil)
+
+    return render(request, 'editar_perfil.html', {'form': form})
+
+
+class CustomLoginView(LoginView):
+    def get(self, request, *args, **kwargs):
+        # Se o usuário está sendo redirecionado devido a uma tentativa de acesso sem login
+        if not request.user.is_authenticated and 'next' in request.GET:
+            messages.error(
+                request, 'Você precisa estar logado para acessar esta página.')
+        return super().get(request, *args, **kwargs)

@@ -1,12 +1,22 @@
 <!-- menu_mobile.html -->
 <div class="mobile-nav" id="mobile-nav">
   <a href="" class="line-hover"><i class="fas fa-home"></i> Home</a>
-  <a href="" class="line-hover"><i class="fas fa-cogs"></i> Recursos</a>
-  <a href="" class="line-hover"
-    ><i class="fas fa-tachometer-alt"></i> Dashboard</a
-  >
-  <a href="" class="line-hover"><i class="fas fa-info-circle"></i> Sobre</a>
+  <!-- Dropdown para "Recursos" -->
+  <div class="dropdown">
+    <a class="line-hover dropdown-toggle">
+      <i class="fas fa-cogs"></i> Recursos
+    </a>
+    <div class="dropdown-menu">
+      <a href="#">Calcular consumo</a>
+      <a href="#">Outro recurso</a>
+      <a href="#">Mais recursos</a>
+    </div>
+  </div>
+  <a href="" class="line-hover"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+  <a href="" class="line-hover"><i class="fas fa-user"></i> Perfil</a>
 </div>
+
+<!-- Menu Hamburger -->
 <div class="menu-hamburger">
   <i class="fas fa-bars" id="hamburger-icon"></i>
 </div>

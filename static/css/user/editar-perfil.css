@@ -1,44 +1,32 @@
-#logomarca-img {
-  width: 200px;
-  height: 50px;
-  object-fit: cover;
-  margin: 1em 0 0 1em;
-}
-.login-container {
+.perfil-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  width: 100%;
   height: 80vh;
   gap: 30px;
   padding: 20px;
 }
 
-/* Estilo da imagem */
-.login-image img {
-  max-width: 400px;
-  width: 100%;
-  border-radius: 10px;
-}
-
-.login-form form {
+.perfil-info form {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
 /* Estilo do formulário */
-.login-form {
+.perfil-info {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   color: #fff;
-  width: 30%;
+  width: 60%;
 }
 
-.login-form h2 {
+.perfil-info h2 {
   margin-bottom: 20px;
   text-align: center;
-  color: #79f297; /* Verde claro */
+  color: #4CAF50; /* Verde claro */
 }
 
 .form-group {
@@ -93,13 +81,13 @@
   justify-content: flex-end;
   color: #1a1a1a;
 }
-.content-singup-login span a{
+.content-singup-login span a {
   color: #61cc7c;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
-.content-singup-login span a:hover{
-    color: #60bf78;
+.content-singup-login span a:hover {
+  color: #60bf78;
 }
 
 .messages .alert {
@@ -124,21 +112,8 @@
   font-size: 14px;
 }
 
-.alert-error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb; /* Borda mais clara para erros */
-}
-
-
-@media (max-width: 768px){
-  .login-image img{
-    display: none;
-  }
-  .login-container{
-    gap: 0;
-  }
-  .login-form{
+@media (max-width: 768px) {
+  .perfil-info{
     width: 100%;
   }
 }
