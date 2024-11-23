@@ -1,69 +1,109 @@
-/* Estilos Gerais para o Perfil */
 .perfil-container {
-    width: 80%;
-    max-width: 900px;
-    margin: 0 auto;
-    margin-top: 1em;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+  width: 80%;
+  max-width: 900px;
+  margin: 1em auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content-dropdown-resource {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.dropdown-resource {
+  position: relative;
+}
+
+.dropdown-menu-resource {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  z-index: 999;
+}
+
+.dropdown-menu-resource a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  padding: 10px 15px;
+}
+
+.dropdown-menu-resource a:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-resource:hover .dropdown-menu-resource {
+  display: block;
 }
 
 h1 {
-    text-align: center;
-    color: #4CAF50;
-    margin-bottom: 20px;
+  text-align: center;
+  color: #4caf50;
+  margin-bottom: 20px;
 }
 
-/* Estilos para as informações do perfil */
 .perfil-info {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .info-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 .info-item strong {
-    color: #333;
-    font-weight: 600;
+  color: #333;
+  font-weight: 600;
 }
 
 .info-item span {
-    color: #555;
+  color: #555;
 }
 
-/* Estilos para o botão de editar perfil */
 .perfil-actions {
-    text-align: center;
+  text-align: center;
 }
 
 .btn {
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #4CAF50;
-    font-size: 16px;
-    transition: background-color 0.3s;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #4caf50;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
-.btn-edit {
-    margin-top: 20px;
-}
-
-/* Responsividade */
 @media (max-width: 768px) {
-    .perfil-container {
-        width: 90%;
-    }
+  .perfil-container {
+    width: 90%;
+  }
+
+  .dropdown-menu-resource {
+    right: -50%;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    width: 220px;
+  }
+
+  .dropdown-menu-resource a {
+    padding: 10px;
+  }
 }

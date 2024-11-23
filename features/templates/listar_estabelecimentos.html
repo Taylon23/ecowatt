@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Meus Estabelecimentos {% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Estabelecimentos Cadastrados</h1>
+
+  <!-- Exibir mensagens de sucesso ou erro -->
+  {% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      <strong>{{ message.tags|capfirst }}!</strong> {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if estabelecimentos %}
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th class="text-nowrap text-center">Nome</th>
+          <th class="text-center">Total de equipamentos</th>
+          <th class="text-nowrap text-center">Data da criação</th>
+          <th class="text-nowrap text-center">Ações</th>
+          <th class="text-nowrap text-center">Criar Plano</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for estabelecimento in estabelecimentos %}
+        <tr>
+          <td class="text-center">
+            <a href="{% url 'listar-equipamentos' estabelecimento.id %}" class="btn btn-info btn-sm">
+              {{ estabelecimento.estabelecimento }}
+            </a>
+          </td>
+          <td class="text-center">{{ estabelecimento.total_equipamentos }}</td>
+          <td class="text-center">{{ estabelecimento.created|date:"d/m/Y" }}</td>
+          <td class="text-center">
+            <!-- Botões de editar e excluir alinhados na mesma linha -->
+            <div class="d-flex justify-content-center">
+              <a href="{% url 'editar-estabelecimento' estabelecimento.id %}" class="btn btn-warning btn-sm mx-2">
+                <i class="fas fa-pencil-alt"></i> Editar
+              </a>
+              <a href="{% url 'excluir-estabelecimento' estabelecimento.id %}" class="btn btn-danger btn-sm mx-2">
+                <i class="fas fa-trash-alt"></i> Excluir
+              </a>
+            </div>
+          </td>
+          <td class="text-center">
+            <!-- Botão Criar Plano -->
+            <a href="" class="btn btn-primary btn-sm">
+              Criar Plano de economia
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="text-center">
+    Você ainda não cadastrou nenhum estabelecimento.
+    <a href="{% url 'criar-estabelecimento' %}">Criar estabelecimento</a>
+  </p>
+  {% endif %}
+</div>
+{% endblock %}

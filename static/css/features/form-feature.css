@@ -54,8 +54,8 @@
 
 /* Estilo do botão */
 .btn-submit {
-    background-color: #60bf78;
-    color: white;
+    background-color: #5db874;
+    color: #fff;
     border: none;
     padding: 12px 20px;
     font-size: 1.1rem;
@@ -65,7 +65,8 @@
 }
 
 .btn-submit:hover {
-    background-color: #79f297;
+    background-color: #54a368;
+    color: #fff;
 }
 
 /* Mensagens */
@@ -105,3 +106,8 @@
     border: 1px solid #ffeeba;
 }
 
+@media (max-width:768px){
+    .form-container{
+        width: 90%;
+    }
+}

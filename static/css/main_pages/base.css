@@ -88,7 +88,6 @@ body {
 
 .content-icon-links {
   position: relative;
-  margin: 5px 0;
 }
 
 .content-icon-links .line-hover::after {
@@ -114,11 +113,11 @@ body {
 
 /* Efeito de hover */
 .content-icon-links .line-hover:hover::after {
-  width: 100%; /* A linha se expande quando o mouse passa sobre o link */
+  width: 100%; 
 }
 
 .content-icon-links .line-hover:hover {
-  color: #60bf78; /* Altera a cor do texto quando o mouse passa sobre o link */
+  color: #60bf78; 
 }
 
 .dropdown-menu {
@@ -130,13 +129,14 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 200px;
+  width: 250px;
   z-index: 999;
 }
 
 @media (max-width: 768px)  {
   .dropdown-menu{
     left: -50%;
+    width: 200px;
   }
 }
 

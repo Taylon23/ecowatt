@@ -3,8 +3,24 @@ from django.contrib.auth.models import User
 from . import choice
 
 
+class Estabelecimento(models.Model):
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    estabelecimento = models.CharField(max_length=255)
+    created = models.DateField(auto_now_add=True)
+
+    def total_equipamentos(self):
+        return self.equipamentos.count()
+
+    def __str__(self):
+        return f'{self.estabelecimento}'
+
+
+
 class Equipamento(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
+    estabelecimento = models.ForeignKey(
+        Estabelecimento, on_delete=models.CASCADE, related_name="equipamentos"
+    )
     nome_personalizado = models.CharField(max_length=200)
     tipo = models.CharField(max_length=50, choices=choice.TIPOS_EQUIPAMENTO)
     potencia = models.PositiveIntegerField()  # Em watts

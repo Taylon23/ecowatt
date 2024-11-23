@@ -8,10 +8,22 @@
 
 {% block link_extras %}
     <link rel="stylesheet" href="{% static 'css/user/perfil.css' %}" />
-{% endblock %} 
+{% endblock %}
 
 {% block main %}
 <div class="perfil-container">
+    <div class="content-dropdown-resource">
+        <div class="dropdown-resource">
+            <div class="dropdown-toggle" aria-label="Abrir menu do perfil">
+              <i class="fas fa-bars"></i>
+            </div>
+            <div class="dropdown-menu-resource">
+            <a href="{% url 'listar-estabelecimentos' %}">Meus estabelecimentos</a>
+              <a href="#">Recurso 3</a>
+            </div>
+        </div>
+    </div>
+    
     <h1>Meu Perfil</h1>
     {% if messages %}
     <div class="messages">

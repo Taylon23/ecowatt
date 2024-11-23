@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} Confirmar Exclusão {% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+  <h1 class="text-center">Você realmente deseja excluir este estabelecimento?</h1>
+  <h3 style="color: red;" class="text-center">Nome: {{ estabelecimento.estabelecimento }}</h3>
+
+  <form method="post" class="d-flex justify-content-center">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger m-2">Excluir</button>
+    <a href="{% url 'listar-estabelecimentos' %}" class="btn btn-secondary m-2">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

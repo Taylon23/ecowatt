@@ -69,12 +69,11 @@
   border-color: #79f297; /* Verde claro */
   outline: none;
 }
-
 /* Botão de envio */
 .btn-submit {
   width: 100%;
   padding: 10px;
-  background-color: #60bf78; /* Verde escuro */
+  background-color: #5db874; /* Verde claro */
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -84,7 +83,7 @@
 }
 
 .btn-submit:hover {
-  background-color: #79f297; /* Verde claro */
+  background-color: #54a368; /* Verde escuro */
 }
 
 .content-singup-login {
