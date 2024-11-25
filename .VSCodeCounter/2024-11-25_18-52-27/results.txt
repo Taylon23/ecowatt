@@ -1,0 +1,267 @@
+Date : 2024-11-25 18:52:27
+Directory : /home/taylon/projetos_django/ecowatt
+Total : 198 files,  25049 codes, 4126 comments, 6280 blanks, all 35455 lines
+
+Languages
++-----------------+------------+------------+------------+------------+------------+
+| language        | files      | code       | comment    | blank      | total      |
++-----------------+------------+------------+------------+------------+------------+
+| JavaScript      |         87 |     17,873 |      3,926 |      4,667 |     26,466 |
+| CSS             |         22 |      4,964 |        129 |      1,125 |      6,218 |
+| Django Template |         23 |      1,190 |          0 |        163 |      1,353 |
+| Python          |         43 |        810 |         71 |        296 |      1,177 |
+| XML             |         21 |        178 |          0 |         19 |        197 |
+| Markdown        |          2 |         34 |          0 |         10 |         44 |
++-----------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                     | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                        |        198 |     25,049 |      4,126 |      6,280 |     35,455 |
+| . (Files)                                                                                                                |          1 |         17 |          1 |          5 |         23 |
+| ecowatt                                                                                                                  |          5 |        124 |         16 |         59 |        199 |
+| functionalities                                                                                                          |         31 |      1,029 |         41 |        253 |      1,323 |
+| functionalities (Files)                                                                                                  |          9 |        337 |         33 |        109 |        479 |
+| functionalities/migrations                                                                                               |          9 |        135 |          8 |         50 |        193 |
+| functionalities/templates                                                                                                |         13 |        557 |          0 |         94 |        651 |
+| main_pages                                                                                                               |         11 |        346 |          3 |         43 |        392 |
+| main_pages (Files)                                                                                                       |          7 |         15 |          3 |         14 |         32 |
+| main_pages/migrations                                                                                                    |          1 |          0 |          0 |          1 |          1 |
+| main_pages/templates                                                                                                     |          3 |        331 |          0 |         28 |        359 |
+| static                                                                                                                   |          9 |        901 |         22 |        162 |      1,085 |
+| static/css                                                                                                               |          7 |        884 |         15 |        158 |      1,057 |
+| static/css/functionalities                                                                                               |          2 |        152 |          4 |         28 |        184 |
+| static/css/main_pages                                                                                                    |          2 |        419 |          6 |         75 |        500 |
+| static/css/user                                                                                                          |          3 |        313 |          5 |         55 |        373 |
+| static/js                                                                                                                |          2 |         17 |          7 |          4 |         28 |
+| static/js/main_pages                                                                                                     |          2 |         17 |          7 |          4 |         28 |
+| staticfiles                                                                                                              |        123 |     22,148 |      4,033 |      5,659 |     31,840 |
+| staticfiles/admin                                                                                                        |        123 |     22,148 |      4,033 |      5,659 |     31,840 |
+| staticfiles/admin/css                                                                                                    |         16 |      4,097 |        114 |        972 |      5,183 |
+| staticfiles/admin/css (Files)                                                                                            |         13 |      3,654 |        114 |        909 |      4,677 |
+| staticfiles/admin/css/vendor                                                                                             |          3 |        443 |          0 |         63 |        506 |
+| staticfiles/admin/css/vendor/select2                                                                                     |          3 |        443 |          0 |         63 |        506 |
+| staticfiles/admin/img                                                                                                    |         21 |        178 |          0 |         19 |        197 |
+| staticfiles/admin/img (Files)                                                                                            |         19 |        176 |          0 |         19 |        195 |
+| staticfiles/admin/img/gis                                                                                                |          2 |          2 |          0 |          0 |          2 |
+| staticfiles/admin/js                                                                                                     |         86 |     17,873 |      3,919 |      4,668 |     26,460 |
+| staticfiles/admin/js (Files)                                                                                             |         18 |      1,583 |        193 |        147 |      1,923 |
+| staticfiles/admin/js/admin                                                                                               |          2 |        522 |         78 |         50 |        650 |
+| staticfiles/admin/js/vendor                                                                                              |         66 |     15,768 |      3,648 |      4,471 |     23,887 |
+| staticfiles/admin/js/vendor/jquery                                                                                       |          2 |      6,768 |      1,888 |      2,064 |     10,720 |
+| staticfiles/admin/js/vendor/select2                                                                                      |         62 |      5,179 |        444 |      1,399 |      7,022 |
+| staticfiles/admin/js/vendor/select2 (Files)                                                                              |          3 |      5,120 |        385 |      1,340 |      6,845 |
+| staticfiles/admin/js/vendor/select2/i18n                                                                                 |         59 |         59 |         59 |         59 |        177 |
+| staticfiles/admin/js/vendor/xregexp                                                                                      |          2 |      3,821 |      1,316 |      1,008 |      6,145 |
+| templates                                                                                                                |          1 |         14 |          0 |          1 |         15 |
+| user                                                                                                                     |         17 |        470 |         10 |         98 |        578 |
+| user (Files)                                                                                                             |          9 |        162 |          9 |         50 |        221 |
+| user/migrations                                                                                                          |          2 |         20 |          1 |          8 |         29 |
+| user/templates                                                                                                           |          6 |        288 |          0 |         40 |        328 |
++--------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| filename                                                                                                                 | language        | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| /home/taylon/projetos_django/ecowatt/ecowatt/__init__.py                                                                 | Python          |          0 |          0 |          1 |          1 |
+| /home/taylon/projetos_django/ecowatt/ecowatt/asgi.py                                                                     | Python          |         10 |          0 |          7 |         17 |
+| /home/taylon/projetos_django/ecowatt/ecowatt/settings.py                                                                 | Python          |         96 |         16 |         41 |        153 |
+| /home/taylon/projetos_django/ecowatt/ecowatt/urls.py                                                                     | Python          |          8 |          0 |          3 |         11 |
+| /home/taylon/projetos_django/ecowatt/ecowatt/wsgi.py                                                                     | Python          |         10 |          0 |          7 |         17 |
+| /home/taylon/projetos_django/ecowatt/functionalities/__init__.py                                                         | Python          |          0 |          0 |          1 |          1 |
+| /home/taylon/projetos_django/ecowatt/functionalities/admin.py                                                            | Python          |          5 |          0 |          3 |          8 |
+| /home/taylon/projetos_django/ecowatt/functionalities/apps.py                                                             | Python          |          4 |          0 |          2 |          6 |
+| /home/taylon/projetos_django/ecowatt/functionalities/choice.py                                                           | Python          |         13 |          0 |          0 |         13 |
+| /home/taylon/projetos_django/ecowatt/functionalities/forms.py                                                            | Python          |         62 |          1 |         11 |         74 |
+| /home/taylon/projetos_django/ecowatt/functionalities/migrations/0001_initial.py                                          | Python          |         34 |          1 |          7 |         42 |
+| /home/taylon/projetos_django/ecowatt/functionalities/migrations/0002_planoeconomia.py                                    | Python          |         21 |          1 |          6 |         28 |
+| /home/taylon/projetos_django/ecowatt/functionalities/migrations/0003_alter_planoeconomia_estabelecimento.py              | Python          |         13 |          1 |          6 |         20 |
+| /home/taylon/projetos_django/ecowatt/functionalities/migrations/0004_alter_planoeconomia_estabelecimento.py              | Python          |         13 |          1 |          6 |         20 |
+| /home/taylon/projetos_django/ecowatt/functionalities/migrations/0005_alter_planoeconomia_estabelecimento.py              | Python          |         13 |          1 |          6 |         20 |
+| /home/taylon/projetos_django/ecowatt/functionalities/migrations/0006_alter_planoeconomia_estabelecimento.py              | Python          |         13 |          1 |          6 |         20 |
+| /home/taylon/projetos_django/ecowatt/functionalities/migrations/0007_equipamento_posicao.py                              | Python          |         12 |          1 |          6 |         19 |
+| /home/taylon/projetos_django/ecowatt/functionalities/migrations/0008_remove_equipamento_posicao_planoeconomia_posicao.py | Python          |         16 |          1 |          6 |         23 |
+| /home/taylon/projetos_django/ecowatt/functionalities/migrations/__init__.py                                              | Python          |          0 |          0 |          1 |          1 |
+| /home/taylon/projetos_django/ecowatt/functionalities/models.py                                                           | Python          |         62 |          7 |         19 |         88 |
+| /home/taylon/projetos_django/ecowatt/functionalities/templates/calculo_consumo.html                                      | Django Template |         41 |          0 |         10 |         51 |
+| /home/taylon/projetos_django/ecowatt/functionalities/templates/confirmar_exclusao_equipamento.html                       | Django Template |         13 |          0 |          4 |         17 |
+| /home/taylon/projetos_django/ecowatt/functionalities/templates/confirmar_exclusao_estabelecimento.html                   | Django Template |         13 |          0 |          4 |         17 |
+| /home/taylon/projetos_django/ecowatt/functionalities/templates/confirmar_exclusao_plano.html                             | Django Template |         13 |          0 |          4 |         17 |
+| /home/taylon/projetos_django/ecowatt/functionalities/templates/criar-estabelecimento.html                                | Django Template |         21 |          0 |          5 |         26 |
+| /home/taylon/projetos_django/ecowatt/functionalities/templates/criar_plano_economia.html                                 | Django Template |         44 |          0 |          9 |         53 |
+| /home/taylon/projetos_django/ecowatt/functionalities/templates/editar-equipamento.html                                   | Django Template |         41 |          0 |         10 |         51 |
+| /home/taylon/projetos_django/ecowatt/functionalities/templates/editar-estabelecimento.html                               | Django Template |         21 |          0 |          5 |         26 |
+| /home/taylon/projetos_django/ecowatt/functionalities/templates/editar_plano.html                                         | Django Template |         44 |          0 |          9 |         53 |
+| /home/taylon/projetos_django/ecowatt/functionalities/templates/estabelecimento_form.html                                 | Django Template |         21 |          0 |          5 |         26 |
+| /home/taylon/projetos_django/ecowatt/functionalities/templates/listar_equipamentos.html                                  | Django Template |         69 |          0 |         10 |         79 |
+| /home/taylon/projetos_django/ecowatt/functionalities/templates/listar_estabelecimentos.html                              | Django Template |         67 |          0 |          6 |         73 |
+| /home/taylon/projetos_django/ecowatt/functionalities/templates/listar_planos_economia.html                               | Django Template |        149 |          0 |         13 |        162 |
+| /home/taylon/projetos_django/ecowatt/functionalities/tests.py                                                            | Python          |          1 |          1 |          2 |          4 |
+| /home/taylon/projetos_django/ecowatt/functionalities/urls.py                                                             | Python          |         25 |         12 |         14 |         51 |
+| /home/taylon/projetos_django/ecowatt/functionalities/views.py                                                            | Python          |        165 |         12 |         57 |        234 |
+| /home/taylon/projetos_django/ecowatt/main_pages/__init__.py                                                              | Python          |          0 |          0 |          1 |          1 |
+| /home/taylon/projetos_django/ecowatt/main_pages/admin.py                                                                 | Python          |          1 |          1 |          2 |          4 |
+| /home/taylon/projetos_django/ecowatt/main_pages/apps.py                                                                  | Python          |          4 |          0 |          3 |          7 |
+| /home/taylon/projetos_django/ecowatt/main_pages/migrations/__init__.py                                                   | Python          |          0 |          0 |          1 |          1 |
+| /home/taylon/projetos_django/ecowatt/main_pages/models.py                                                                | Python          |          1 |          1 |          2 |          4 |
+| /home/taylon/projetos_django/ecowatt/main_pages/templates/base.html                                                      | Django Template |        133 |          0 |         13 |        146 |
+| /home/taylon/projetos_django/ecowatt/main_pages/templates/blog.html                                                      | Django Template |        173 |          0 |         13 |        186 |
+| /home/taylon/projetos_django/ecowatt/main_pages/templates/menu_mobile.html                                               | Django Template |         25 |          0 |          2 |         27 |
+| /home/taylon/projetos_django/ecowatt/main_pages/tests.py                                                                 | Python          |          1 |          1 |          2 |          4 |
+| /home/taylon/projetos_django/ecowatt/main_pages/urls.py                                                                  | Python          |          5 |          0 |          2 |          7 |
+| /home/taylon/projetos_django/ecowatt/main_pages/views.py                                                                 | Python          |          3 |          0 |          2 |          5 |
+| /home/taylon/projetos_django/ecowatt/manage.py                                                                           | Python          |         17 |          1 |          5 |         23 |
+| /home/taylon/projetos_django/ecowatt/static/css/functionalities/form-feature.css                                         | CSS             |         94 |          4 |         15 |        113 |
+| /home/taylon/projetos_django/ecowatt/static/css/functionalities/listar-planos.css                                        | CSS             |         58 |          0 |         13 |         71 |
+| /home/taylon/projetos_django/ecowatt/static/css/main_pages/base.css                                                      | CSS             |        217 |          3 |         42 |        262 |
+| /home/taylon/projetos_django/ecowatt/static/css/main_pages/home.css                                                      | CSS             |        202 |          3 |         33 |        238 |
+| /home/taylon/projetos_django/ecowatt/static/css/user/editar-perfil.css                                                   | CSS             |        100 |          2 |         18 |        120 |
+| /home/taylon/projetos_django/ecowatt/static/css/user/form-login-register.css                                             | CSS             |        121 |          3 |         19 |        143 |
+| /home/taylon/projetos_django/ecowatt/static/css/user/perfil.css                                                          | CSS             |         92 |          0 |         18 |        110 |
+| /home/taylon/projetos_django/ecowatt/static/js/main_pages/logout.js                                                      | JavaScript      |          6 |          2 |          1 |          9 |
+| /home/taylon/projetos_django/ecowatt/static/js/main_pages/menuMobile.js                                                  | JavaScript      |         11 |          5 |          3 |         19 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/autocomplete.css                                              | CSS             |        230 |          0 |         50 |        280 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/base.css                                                      | CSS             |        932 |         32 |        216 |      1,180 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/changelists.css                                               | CSS             |        273 |          8 |         63 |        344 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/dark_mode.css                                                 | CSS             |         96 |          6 |         29 |        131 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/dashboard.css                                                 | CSS             |         21 |          2 |          7 |         30 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/forms.css                                                     | CSS             |        399 |         12 |        102 |        513 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/login.css                                                     | CSS             |         49 |          1 |         12 |         62 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/nav_sidebar.css                                               | CSS             |        125 |          0 |         26 |        151 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/responsive.css                                                | CSS             |        723 |         31 |        214 |        968 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/responsive_rtl.css                                            | CSS             |         87 |          2 |         23 |        112 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/rtl.css                                                       | CSS             |        221 |          8 |         63 |        292 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/unusable_password_field.css                                   | CSS             |         13 |          3 |          4 |         20 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/vendor/select2/LICENSE-SELECT2.md                             | Markdown        |         17 |          0 |          5 |         22 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/vendor/select2/select2.css                                    | CSS             |        425 |          0 |         57 |        482 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/vendor/select2/select2.min.css                                | CSS             |          1 |          0 |          1 |          2 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/css/widgets.css                                                   | CSS             |        485 |          9 |        100 |        594 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/calendar-icons.svg                                            | XML             |         63 |          0 |          1 |         64 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/gis/move_vertex_off.svg                                       | XML             |          1 |          0 |          0 |          1 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/gis/move_vertex_on.svg                                        | XML             |          1 |          0 |          0 |          1 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/icon-addlink.svg                                              | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/icon-alert.svg                                                | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/icon-calendar.svg                                             | XML             |          9 |          0 |          1 |         10 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/icon-changelink.svg                                           | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/icon-clock.svg                                                | XML             |          9 |          0 |          1 |         10 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/icon-deletelink.svg                                           | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/icon-hidelink.svg                                             | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/icon-no.svg                                                   | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/icon-unknown-alt.svg                                          | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/icon-unknown.svg                                              | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/icon-viewlink.svg                                             | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/icon-yes.svg                                                  | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/inline-delete.svg                                             | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/search.svg                                                    | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/selector-icons.svg                                            | XML             |         34 |          0 |          1 |         35 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/sorting-icons.svg                                             | XML             |         19 |          0 |          1 |         20 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/tooltag-add.svg                                               | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/img/tooltag-arrowright.svg                                        | XML             |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/SelectBox.js                                                   | JavaScript      |        111 |          5 |          1 |        117 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/SelectFilter2.js                                               | JavaScript      |        235 |         28 |         24 |        287 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/actions.js                                                     | JavaScript      |        175 |          9 |         21 |        205 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/admin/DateTimeShortcuts.js                                     | JavaScript      |        317 |         65 |         27 |        409 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/admin/RelatedObjectLookups.js                                  | JavaScript      |        205 |         13 |         23 |        241 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/autocomplete.js                                                | JavaScript      |         28 |          2 |          4 |         34 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/calendar.js                                                    | JavaScript      |        196 |         28 |         16 |        240 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/cancel.js                                                      | JavaScript      |         24 |          3 |          3 |         30 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/change_form.js                                                 | JavaScript      |         14 |          2 |          1 |         17 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/core.js                                                        | JavaScript      |        148 |         19 |         18 |        185 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/filters.js                                                     | JavaScript      |         20 |          6 |          5 |         31 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/inlines.js                                                     | JavaScript      |        272 |         61 |         27 |        360 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/jquery.init.js                                                 | JavaScript      |          2 |          6 |          1 |          9 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/nav_sidebar.js                                                 | JavaScript      |         73 |          1 |          6 |         80 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/popup_response.js                                              | JavaScript      |         15 |          0 |          1 |         16 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/prepopulate.js                                                 | JavaScript      |         29 |         10 |          5 |         44 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/prepopulate_init.js                                            | JavaScript      |         15 |          0 |          1 |         16 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/theme.js                                                       | JavaScript      |         43 |          3 |          6 |         52 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/unusable_password_field.js                                     | JavaScript      |         24 |          5 |          1 |         30 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/urlify.js                                                      | JavaScript      |        159 |          5 |          6 |        170 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/jquery/jquery.js                                        | JavaScript      |      6,767 |      1,887 |      2,063 |     10,717 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/jquery/jquery.min.js                                    | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/LICENSE.md                                      | Markdown        |         17 |          0 |          5 |         22 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/af.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/ar.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/az.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/bg.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/bn.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/bs.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/ca.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/cs.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/da.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/de.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/dsb.js                                     | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/el.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/en.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/es.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/et.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/eu.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/fa.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/fi.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/fr.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/gl.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/he.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/hi.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/hr.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/hsb.js                                     | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/hu.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/hy.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/id.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/is.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/it.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/ja.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/ka.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/km.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/ko.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/lt.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/lv.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/mk.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/ms.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/nb.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/ne.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/nl.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/pl.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/ps.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/pt-BR.js                                   | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/pt.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/ro.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/ru.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/sk.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/sl.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/sq.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/sr-Cyrl.js                                 | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/sr.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/sv.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/th.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/tk.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/tr.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/uk.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/vi.js                                      | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/zh-CN.js                                   | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/i18n/zh-TW.js                                   | JavaScript      |          1 |          1 |          1 |          3 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/select2.full.js                                 | JavaScript      |      5,102 |        384 |      1,335 |      6,821 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/select2/select2.full.min.js                             | JavaScript      |          1 |          1 |          0 |          2 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/xregexp/xregexp.js                                      | JavaScript      |      3,817 |      1,303 |      1,007 |      6,127 |
+| /home/taylon/projetos_django/ecowatt/staticfiles/admin/js/vendor/xregexp/xregexp.min.js                                  | JavaScript      |          4 |         13 |          1 |         18 |
+| /home/taylon/projetos_django/ecowatt/templates/messages.html                                                             | Django Template |         14 |          0 |          1 |         15 |
+| /home/taylon/projetos_django/ecowatt/user/__init__.py                                                                    | Python          |          0 |          0 |          1 |          1 |
+| /home/taylon/projetos_django/ecowatt/user/admin.py                                                                       | Python          |          3 |          0 |          1 |          4 |
+| /home/taylon/projetos_django/ecowatt/user/apps.py                                                                        | Python          |          6 |          0 |          4 |         10 |
+| /home/taylon/projetos_django/ecowatt/user/forms.py                                                                       | Python          |         38 |          1 |         14 |         53 |
+| /home/taylon/projetos_django/ecowatt/user/migrations/0001_initial.py                                                     | Python          |         20 |          1 |          7 |         28 |
+| /home/taylon/projetos_django/ecowatt/user/migrations/__init__.py                                                         | Python          |          0 |          0 |          1 |          1 |
+| /home/taylon/projetos_django/ecowatt/user/models.py                                                                      | Python          |          9 |          0 |          4 |         13 |
+| /home/taylon/projetos_django/ecowatt/user/signals.py                                                                     | Python          |         11 |          1 |          3 |         15 |
+| /home/taylon/projetos_django/ecowatt/user/templates/activation_email.html                                                | Django Template |         21 |          0 |          1 |         22 |
+| /home/taylon/projetos_django/ecowatt/user/templates/editar_perfil.html                                                   | Django Template |         52 |          0 |          9 |         61 |
+| /home/taylon/projetos_django/ecowatt/user/templates/login.html                                                           | Django Template |         68 |          0 |          9 |         77 |
+| /home/taylon/projetos_django/ecowatt/user/templates/logout.html                                                          | Django Template |         14 |          0 |          1 |         15 |
+| /home/taylon/projetos_django/ecowatt/user/templates/perfil.html                                                          | Django Template |         53 |          0 |          8 |         61 |
+| /home/taylon/projetos_django/ecowatt/user/templates/register.html                                                        | Django Template |         80 |          0 |         12 |         92 |
+| /home/taylon/projetos_django/ecowatt/user/tests.py                                                                       | Python          |          1 |          1 |          2 |          4 |
+| /home/taylon/projetos_django/ecowatt/user/urls.py                                                                        | Python          |         11 |          0 |          2 |         13 |
+| /home/taylon/projetos_django/ecowatt/user/views.py                                                                       | Python          |         83 |          6 |         19 |        108 |
+| Total                                                                                                                    |                 |     25,049 |      4,126 |      6,280 |     35,455 |
++--------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+

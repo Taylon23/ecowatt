@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link_extras%}
+    <link rel="stylesheet" href="{% static 'css/functionalities/form-feature.css' %}">
+{% endblock %}
+    
+{% block title %}
+    Editar Plano de Economia
+{% endblock %}
+    
+{% block main %}
+<div class="content-form">
+    <h1 class="title">Editar Plano de economia</h1>
+
+    <form method="POST" class="form-container">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="id_estabelecimento">Estabelecimento</label>
+            {{ form.estabelecimento }}
+            {% if form.estabelecimento.errors %}
+                <div class="text-danger">
+                    {{ form.estabelecimento.errors|join:", " }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_meta_gasto_mensal">Meta de Gasto Mensal (R$)</label>
+            {{ form.meta_gasto_mensal }}
+            {% if form.meta_gasto_mensal.errors %}
+                <div class="text-danger">
+                    {{ form.meta_gasto_mensal.errors|join:", " }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_meta_consumo_mensal">Meta de Consumo Mensal (kWh) (opcional)</label>
+            {{ form.meta_consumo_mensal }}
+            {% if form.meta_consumo_mensal.errors %}
+                <div class="text-danger">
+                    {{ form.meta_consumo_mensal.errors|join:", " }}
+                </div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-submit">Editar</button>
+    </form>
+</div>
+{% endblock %}

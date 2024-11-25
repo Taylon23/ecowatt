@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link_extras%}
+    <link rel="stylesheet" href="{% static 'css/functionalities/form-feature.css' %}">
+{% endblock %}
+    
+{% block title %}
+    Adiconar eletrônico
+{% endblock %}
+    
+{% block main %}
+<div class="content-form">
+<h1 class="title">Editar nome do estabelecimento</h1>
+
+<form method="POST" class="form-container">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_estabelecimento">Estabelecimento</label>
+        {{ form.estabelecimento }}
+    </div>
+    <button type="submit" class="btn btn-submit">Criar</button>
+</form>
+</div>
+{% endblock %}

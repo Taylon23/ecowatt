@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %} Equipamentos do Estabelecimento {% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+  <h1 class="text-center mb-4">
+    Equipamentos de {{ estabelecimento.estabelecimento }}
+  </h1>
+  
+  {% if equipamentos %}
+    <div class="d-flex justify-content-end mb-3">
+    <a href="{% url 'criar-equipamento' %}" class="btn btn-info btn-sm mx-2">
+        <i class="fas fa-plus"></i> Eletrônico
+    </a>
+</div>
+  {% endif %}
+    
+  
+<!-- Exibir mensagens de sucesso ou erro -->
+{% include 'messages.html' %}
+
+
+
+
+  {% if equipamentos %}
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Potência</th>
+          <th>Horas por dia</th>
+          <th>Consumo mensal (kWh)</th>
+          <th>Custo mensal (R$)</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for equipamento in equipamentos %}
+        <tr>
+          <td>{{ equipamento.nome_personalizado }}</td>
+          <td>{{ equipamento.tipo }}</td>
+          <td>{{ equipamento.potencia }} W</td>
+          <td>{{ equipamento.horas_por_dia }} horas</td>
+          <td>{{ equipamento.consumoMensalKwh }} kWh</td>
+          <td>R$ {{ equipamento.custoMensal }}</td>
+          <td>
+            <!-- Botões de editar e excluir alinhados na mesma linha -->
+            <div class="d-flex justify-content-center">
+              <a href="{% url 'editar-equipamento' equipamento.id %}" class="btn btn-warning btn-sm mx-2">
+                <i class="fas fa-pencil-alt"></i> Editar
+              </a>
+              <a href="{% url 'excluir-equipamento' equipamento.id %}" class="btn btn-danger btn-sm mx-2">
+                <i class="fas fa-trash-alt"></i> Excluir
+              </a>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="text-center">
+    Você ainda não cadastrou nenhum equipamento.
+    <a href="{% url 'criar-equipamento' %}">Criar equipamentos</a>
+  </p>
+  {% endif %}
+
+  <!-- Botão de Voltar -->
+  <div class="text-center mt-3">
+    <a href="{% url 'listar-estabelecimentos' %}" class="btn btn-secondary">
+      Voltar
+    </a>
+  </div>
+</div>
+{% endblock %}

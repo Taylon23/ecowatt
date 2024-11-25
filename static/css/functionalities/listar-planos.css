@@ -1,0 +1,70 @@
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor:pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    padding: 1rem;
+    background-color: #54a368;
+}
+
+.card-body {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding: 1rem;
+}
+
+.btn-outline-primary {
+    border-color: #007bff;
+    color: #007bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-outline-danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+.text-success {
+    font-weight: bold;
+    color: #28a745 !important;
+}
+
+.text-info {
+    font-weight: bold;
+    color: #17a2b8 !important;
+}
+
+.text-warning {
+    font-weight: bold;
+    color: #ffc107 !important;
+}
+
+.text-danger {
+    font-weight: bold;
+    color: #dc3545 !important;
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+}

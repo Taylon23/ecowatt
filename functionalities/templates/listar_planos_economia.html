@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Meus Planos de Economia
+{% endblock %}
+
+{% block link_extras %}
+<link rel="stylesheet" href="{% static 'css/functionalities/listar-planos.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Meus Planos de Economia</h1>
+    {% if planos %}
+    <div class="d-flex justify-content-end mb-3">
+    <a href="{% url 'criar-plano-economia' %}" class="btn btn-info btn-sm mx-2">
+        <i class="fas fa-plus"></i> Criar novo plano de economia
+    </a>
+</div>
+  {% endif %}
+
+    {% include 'messages.html' %}
+
+    <!-- Resumo em Cards -->
+    <div id="cards-container" class="row">
+        {% for plano in planos %}
+        <div class="col-md-4 mb-3" data-id="{{ plano.id }}">
+            <div class="card shadow-lg border-0">
+                <div class="card-header text-white text-center">
+                  <div class="d-flex justify-content-end">
+                    <p>{{plano.created}}</p>
+                  </div>
+                    <h5 class="mb-0">Criado em {{ plano.estabelecimento }}</h5>
+                </div>
+                <div class="card-body bg-light">
+                    <p><strong>Meta de Gasto:</strong> <span class="text-success">R$ {{ plano.meta_gasto_mensal }}</span></p>
+                    <p><strong>Meta de Consumo:</strong> <span class="text-info">{{ plano.meta_consumo_mensal|default:"N/A" }} kWh</span></p>
+                    <p><strong>Consumo Atual:</strong> <span class="text-warning">{{ plano.consumo_atual }} kWh</span></p>
+                    <p><strong>Custo Atual:</strong> <span class="text-danger">R$ {{ plano.custo_atual }}</span></p>
+                    <p><strong>Diferença Consumo:</strong>
+                        {{ plano.diferenca_kwh|default:"N/A" }} kWh
+                        {% if plano.diferenca_kwh < 0 %}
+                        <span class="badge bg-danger">Excedido</span>
+                        {% endif %}
+                    </p>
+                    <p><strong>Diferença Custo:</strong>
+                        R$ {{ plano.diferenca_custo }}
+                        {% if plano.diferenca_custo < 0 %}
+                        <span class="badge bg-danger">Excedido</span>
+                        {% endif %}
+                    </p>
+                    <div class="d-flex justify-content-end mt-3">
+                        {% if plano.id %}
+                        <a href="{% url 'editar-plano' plano.id %}" class="btn btn-outline-primary btn-sm mx-1">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                        <a href="{% url 'excluir-plano' plano.id %}" class="btn btn-outline-danger btn-sm mx-1" 
+                          >
+                            <i class="fas fa-trash-alt"></i> Excluir
+                        </a>
+                        {% else %}
+                        <p class="text-danger">Erro: Plano sem ID</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% empty %}
+        <div class="col-12 text-center">
+            <p>Nenhum plano encontrado. <a href="{% url 'criar-plano-economia' %}">Adicionar Plano</a></p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Passando dados para o JavaScript -->
+    <script id="planos-data" type="application/json">
+        {{ planos|json_script:"planos" }}
+    </script>
+
+    <!-- Gráfico -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <canvas id="consumoCustoChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("cards-container");
+    Sortable.create(container, {
+        animation: 150, // Duração da animação em ms
+        ghostClass: "sortable-ghost", // Classe para o item durante o arraste
+        onEnd: (event) => {
+            const ordem = [...event.to.children].map((card, index) => ({
+                id: card.dataset.id, // Assuma que cada card tem um `data-id` correspondente ao `id` do plano
+                posicao: index,
+            }));
+            fetch('/salvar-ordem/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ ordem })
+            })
+        },
+    });
+});
+
+</script>
+
+<script>
+    // Recuperar os dados serializados
+const planosData = JSON.parse(
+  document.getElementById("planos-data").textContent
+);
+
+// Processar dados para o gráfico
+const labels = planosData.map((plano) => plano.estabelecimento.estabelecimento);
+const consumoData = planosData.map((plano) => plano.consumo_atual);
+const custoData = planosData.map((plano) => plano.custo_atual);
+
+// Configurar o gráfico
+const ctx = document.getElementById("consumoCustoChart").getContext("2d");
+new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: labels,
+    datasets: [
+      {
+        label: "Consumo Atual (kWh)",
+        data: consumoData,
+        backgroundColor: "rgba(54, 162, 235, 0.7)",
+        borderColor: "rgba(54, 162, 235, 1)",
+        borderWidth: 1,
+      },
+      {
+        label: "Custo Atual (R$)",
+        data: custoData,
+        backgroundColor: "rgba(255, 99, 132, 0.7)",
+        borderColor: "rgba(255, 99, 132, 1)",
+        borderWidth: 1,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Consumo e Custo por Estabelecimento",
+      },
+    },
+  },
+});
+</script>
+{% endblock %}
+
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+  
