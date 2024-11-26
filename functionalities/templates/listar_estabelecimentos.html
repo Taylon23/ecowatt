@@ -27,7 +27,7 @@
           <th class="text-center">Total de equipamentos</th>
           <th class="text-nowrap text-center">Data da criação</th>
           <th class="text-nowrap text-center">Ações</th>
-          <th class="text-nowrap text-center">Criar Plano</th>
+          <th class="text-nowrap text-center">Plano economia </th>
         </tr>
       </thead>
       <tbody>
@@ -52,11 +52,18 @@
             </div>
           </td>
           <td class="text-center">
-            <!-- Botão Criar Plano -->
-            <a href="{% url 'butao-criar-plano-economia' estabelecimento.id %}" class="btn btn-primary btn-sm">
-              Criar Plano de Economia
-          </a>
-          </td>
+            {% if estabelecimento.planos_economia %}
+                <!-- Botão Ver Plano, caso o plano já exista -->
+                <a href="{% url 'ver-plano-grafico' estabelecimento.planos_economia.id %}" class="btn btn-info btn-sm">
+                    Ver Plano de Economia
+                </a>
+            {% else %}
+                <!-- Botão Criar Plano, caso não exista plano -->
+                <a href="{% url 'butao-criar-plano-economia' estabelecimento.id %}" class="btn btn-primary btn-sm">
+                    Criar Plano de Economia
+                </a>
+            {% endif %}
+        </td>
         </tr>
         {% endfor %}
       </tbody>

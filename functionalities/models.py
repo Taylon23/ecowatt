@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from . import choice
+from decimal import Decimal
 
 
 class Estabelecimento(models.Model):
@@ -29,14 +30,14 @@ class Equipamento(models.Model):
     consumoMensalKwh = models.DecimalField(max_digits=5, decimal_places=2)
     custoMensal = models.DecimalField(
         max_digits=10, decimal_places=2)
-    
+
     def save(self, *args, **kwargs):
         # Calcular consumo mensal em kWh
         self.consumoMensalKwh = (
             self.potencia * self.horas_por_dia * 30) / 1000
 
         # Calcular custo mensal em reais
-        self.custoMensal = self.consumoMensalKwh * float(self.tarifa_por_kwh)
+        self.custoMensal = Decimal(self.consumoMensalKwh) * Decimal(str(self.tarifa_por_kwh))
 
         # Salvar normalmente
         super().save(*args, **kwargs)
@@ -54,7 +55,7 @@ class PlanoEconomia(models.Model):
         max_digits=10, decimal_places=2, help_text="Meta de gasto mensal em reais"
     )
     meta_consumo_mensal = models.DecimalField(
-        max_digits=10, decimal_places=2, null=True, blank=True,
+        max_digits=10, decimal_places=2,
         help_text="Meta de consumo mensal em kWh (opcional)"
     )
     created = models.DateField(auto_now_add=True)
@@ -85,3 +86,13 @@ class PlanoEconomia(models.Model):
     def __str__(self):
         return f"Plano para {self.estabelecimento.estabelecimento} - Meta: {self.meta_gasto_mensal} R$"
 
+
+from django.db import models
+
+class Ajuste(models.Model):
+    estabelecimento = models.ForeignKey('Estabelecimento', on_delete=models.CASCADE)
+    descricao = models.TextField()
+    data_aplicacao = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Ajuste para {self.estabelecimento.estabelecimento} - {self.data_aplicacao.strftime('%d/%m/%Y %H:%M')}"

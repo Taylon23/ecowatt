@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Gráfico{% endblock %}
+
+
+{% block link_extras %}
+    <link rel="stylesheet" href="{% static 'css/functionalities/grafico-tabela.css' %}">
+{% endblock %}
+    
+
+{% block main %}
+<div class="container">
+  <h1 class="text-center mb-4">Dados do Plano: {{ plano.estabelecimento }}</h1>
+  <div class="d-flex justify-content-end mb-3">
+    <a href="{% url 'editar-plano' plano.id %}" class="btn btn-info btn-sm mx-2">
+        <i class="fas fa-pencil-alt"></i> Editar plano
+    </a>
+</div>
+
+  <!-- Div para armazenar os dados do gráfico -->
+  <div id="grafico-dados" style="display: none;">
+    {{ dados_grafico|json_script:'dados_grafico' }}
+  </div>
+  <!-- Elemento Canvas para o Gráfico -->
+  <canvas id="graficoPlano"></canvas>
+</div>
+{% endblock %}
+
+{% block script %}
+<!-- Incluindo Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="{% static 'js/functionalities/grafico-planos.js' %}"></script>
+{% endblock %}

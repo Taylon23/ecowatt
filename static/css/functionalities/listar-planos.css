@@ -11,12 +11,23 @@
 }
 
 .card-header {
-    font-weight: bold;
-    font-size: 1.2rem;
     text-transform: capitalize;
     padding: 1rem;
     background-color: #54a368;
 }
+
+.card-header a{
+    color: #F8F8FF;
+}
+
+.fa-lightbulb{
+    font-size: 1.1em;
+    color: #F8F8FF;
+    transition: all .3s ease;
+  }
+  .fa-lightbulb:hover{
+    color: #ccc;
+  }
 
 .card-body {
     font-size: 0.9rem;

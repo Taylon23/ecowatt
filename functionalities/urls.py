@@ -35,10 +35,11 @@ urlpatterns = [
 
     # URL para criar plano de economia
     path('criar-plano/', views.criar_plano_economia,
-         name='criar-plano-economia'),  
-    
+         name='criar-plano-economia'),
+
     # URL para criar plano de economia pleo butao
-    path('criar-plano-economia/<int:estabelecimento_id>/', views.butao_criar_plano_economia, name='butao-criar-plano-economia'),
+    path('criar-plano-economia/<int:estabelecimento_id>/',
+         views.butao_criar_plano_economia, name='butao-criar-plano-economia'),
 
     # URL para listar planos planos de economia
     path('listar-planos/', views.listar_planos, name='listar-planos-economia'),
@@ -48,6 +49,15 @@ urlpatterns = [
 
     # URL para excluir um plano específico
     path('planos/excluir/<int:id>/', views.excluir_plano, name='excluir-plano'),
-    
-     path('salvar-ordem/', views.salvar_ordem, name='salvar_ordem'),
+
+    # URL para ordenar planos
+    path('salvar-ordem/', views.salvar_ordem, name='salvar_ordem'),
+
+    # URL para exibir grafico do plano
+    path('plano/<int:plano_id>/grafico/',
+         views.exibir_plano_grafico, name='ver-plano-grafico'),
+
+    # URL para gerar dicas e solucao
+    path('estabelecimento/<int:estabelecimento_id>/dicas/',
+         views.dicas_economia, name='dicas-economia'),
 ]

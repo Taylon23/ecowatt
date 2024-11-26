@@ -4,6 +4,7 @@ from . import models
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from .utils import DicasEconomia
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -147,8 +148,9 @@ def criar_plano_economia(request):
 
 
 def butao_criar_plano_economia(request, estabelecimento_id):
-    estabelecimento = get_object_or_404(models.Estabelecimento, id=estabelecimento_id, user=request.user)
-    
+    estabelecimento = get_object_or_404(
+        models.Estabelecimento, id=estabelecimento_id, user=request.user)
+
     if request.method == "POST":
         form = PlanoEconomiaForm(request.POST)
         if form.is_valid():
@@ -164,30 +166,49 @@ def butao_criar_plano_economia(request, estabelecimento_id):
 
     return render(request, "criar_plano_economia.html", {"form": form, "estabelecimento": estabelecimento})
 
+
 @login_required
 def listar_planos(request):
     # Filtra os planos do usuário atual e ordena por 'posicao'
-    planos_queryset = models.PlanoEconomia.objects.filter(
+    planos = models.PlanoEconomia.objects.filter(
         user=request.user).order_by('posicao')
-
-    # Converte para dicionários
-    planos = [
-        {
-            "id": plano.id,
-            "estabelecimento": plano.estabelecimento.estabelecimento,
-            "meta_gasto_mensal": plano.meta_gasto_mensal,
-            "meta_consumo_mensal": plano.meta_consumo_mensal,
-            "consumo_atual": plano.consumo_atual,
-            "custo_atual": plano.custo_atual,
-            "diferenca_kwh": plano.diferenca_kwh,
-            "diferenca_custo": plano.diferenca_custo,
-            "created": plano.created,
-        }
-        for plano in planos_queryset
-    ]
 
     # Renderiza a página com os planos ordenados
     return render(request, "listar_planos_economia.html", {"planos": planos})
+
+
+@login_required
+def exibir_plano_grafico(request, plano_id):
+    plano = get_object_or_404(models.PlanoEconomia,
+                              id=plano_id, user=request.user)
+
+    categorias = [
+        "Meta Gasto em R$ Mensal",
+        "Meta kWh Mensal",
+        "Consumo kWh Atual",
+        "Custo R$ Atual",
+        "Diferença kWh",
+        "Diferença Custo",
+    ]
+    valores = [
+        float(plano.meta_gasto_mensal),
+        float(plano.meta_consumo_mensal),
+        float(plano.consumo_atual),
+        float(plano.custo_atual),
+        float(plano.diferenca_kwh),
+        float(plano.diferenca_custo),
+    ]
+
+    dados_grafico = {
+        "categorias": categorias,
+        "valores": valores,
+    }
+
+    return render(
+        request,
+        "exibir_plano_grafico.html",
+        {"dados_grafico": dados_grafico, "plano": plano},
+    )
 
 
 @login_required
@@ -200,7 +221,7 @@ def editar_plano(request, id):
             form.save()
             messages.success(request, 'Plano atualizado com sucesso!')
             # Substitua pelo nome da URL que lista os planos
-            return redirect('listar-planos-economia')
+            return redirect('ver-plano-grafico', plano_id=plano.id)
         else:
             messages.error(
                 request, 'Erro ao atualizar o plano. Verifique os dados fornecidos.')
@@ -250,3 +271,33 @@ def salvar_ordem(request):
             return JsonResponse({'error': str(e)}, status=400)
 
     return JsonResponse({'error': 'Método não permitido'}, status=405)
+
+
+@login_required
+def dicas_economia(request, estabelecimento_id):
+    # Obtenha o estabelecimento (considerando que o usuário só pode acessar seu próprio estabelecimento)
+    estabelecimento = get_object_or_404(
+        models.Estabelecimento, id=estabelecimento_id, user=request.user)
+
+    # Criação de um objeto de DicasEconomia para esse estabelecimento
+    dicas = DicasEconomia(estabelecimento)
+
+    # Se o formulário de ajustes foi enviado, aplicamos os ajustes
+    if request.method == 'POST':
+        ajustes = dicas.aplicar_ajustes()
+
+        # Adiciona uma mensagem de sucesso
+        messages.success(request, 'Ajustes aplicados com sucesso!')
+
+        # Redireciona para a página de listagem de planos de economia
+        return redirect('listar-planos-economia')  # Substitua pela URL correta
+
+    # Caso contrário, apenas exibe as dicas sem aplicar ajustes
+    ajustes = models.Ajuste.objects.filter(
+        estabelecimento=estabelecimento).order_by('-data_aplicacao')
+
+    return render(request, 'dicas_economia.html', {
+        'estabelecimento': estabelecimento,
+        'dicas': dicas.calcular_dicas(),
+        'ajustes': ajustes,  # Passa os ajustes aplicados para o template
+    })
