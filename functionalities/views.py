@@ -186,7 +186,7 @@ def exibir_plano_grafico(request, plano_id):
         "Meta Gasto em R$ Mensal",
         "Meta kWh Mensal",
         "Consumo kWh Atual",
-        "Custo R$ Atual",
+        "Gasto R$ Atual",
         "Diferença kWh",
         "Diferença Custo",
     ]

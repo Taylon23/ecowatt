@@ -20,8 +20,8 @@ HORAS_RECOMENDADAS = {
     'microondas': 0.5,  # Média de 30 minutos por dia
     'computador': 8,  # Ligado durante o dia, mais ou menos
     'chuveiro_eletrico': 0.5,  # 30 minutos por dia
-    'ventilador': 6,  # Durante a noite (6 horas)
+    'ventilador': 7,  # Durante a noite (6 horas)
     'forno_eletrico': 1,  # 1 hora por dia
-    'luminaria_led': 5,  # Média de 5 horas por dia
-    'ferro_passar': 1,  # 1 hora por dia (considerando o uso de uma vez por semana, mas uma média de 1 hora por dia)
+    'luminaria_led': 9,  # Média de 5 horas por dia
+    'ferro_passar': .5,  # 1 hora por dia (considerando o uso de uma vez por semana, mas uma média de 1 hora por dia)
 }
