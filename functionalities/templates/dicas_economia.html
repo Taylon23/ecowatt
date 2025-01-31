@@ -1,43 +1,73 @@
-{% extends 'base.html' %} 
-{% load static %} 
-{% block title %}Gráfico{% endblock %} 
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Gráfico{% endblock %}
 
 {% block link_extras %}
-<link rel="stylesheet" href="{% static 'css/functionalities/grafico-tabela.css' %}" />
+<!-- Adicione links para CSS ou bibliotecas extras aqui, se necessário -->
 {% endblock %}
 
 {% block main %}
 <div class="container mt-5">
   <h1 class="text-center mb-4">Dicas de Economia para {{ estabelecimento.estabelecimento }}</h1>
 
-  <div class="mb-4">
-    <h2>Dicas para Economizar</h2>
-    <ul>
-      {% for dica in dicas %}
-        <li>{{ dica }}</li>
-      {% empty %}
-        <li>Não há dicas disponíveis no momento.</li>
-      {% endfor %}
-    </ul>
+  <!-- Seção de Dicas -->
+  <div class="mb-5">
+    <h2 class="mb-4">Dicas para Economizar</h2>
+    {% if dicas %}
+      <div class="row">
+        {% for dica in dicas %}
+          <div class="col-md-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Dica de Economia</h5>
+                <p class="card-text">{{ dica }}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-info" role="alert">
+        Não há dicas disponíveis no momento.
+      </div>
+    {% endif %}
   </div>
 
-  <div class="mb-4">
-    <h2>Ajustes Realizados</h2>
-    <ul>
-      {% for ajuste in ajustes %}
-        <li>{{ ajuste.descricao }} - <small>{{ ajuste.data_aplicacao }}</small></li>
-      {% empty %}
-        <li>Não houve ajustes aplicados ainda.</li>
+  <!-- Seção de Ajustes Realizados -->
+  <div class="mb-5">
+    <h2 class="mb-4">Ajustes Realizados</h2>
+    {% if ajustes_por_equipamento %}
+      {% for equipamento, ajustes in ajustes_por_equipamento.items %}
+        <div class="mb-4">
+          <h3><i class="fas fa-tv"></i> {{ equipamento }}</h3>  <!-- Ícone pode variar por equipamento -->
+          <div class="row">
+            {% for ajuste in ajustes %}
+              <div class="col-md-6 mb-3">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-tools"></i> Ajuste Aplicado</h5>
+                    <p class="card-text">{{ ajuste.descricao }}</p>
+                    <small class="text-muted">{{ ajuste.data_aplicacao|date:"d/m/Y à\s H:i" }}</small>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
       {% endfor %}
-    </ul>
-  </div>
+    {% else %}
+      <div class="alert alert-warning" role="alert">
+        Não houve ajustes aplicados ainda.
+      </div>
+    {% endif %}
+</div>
 
+  <!-- Botão para Aplicar Ajustes -->
   <form method="post">
     {% csrf_token %}
     <div class="d-flex justify-content-center align-items-center">
-       <button type="submit" class="btn btn-lg btn-primary mb-2">Aplicar Ajustes</button>
+      <button type="submit" class="btn btn-lg btn-primary mb-2">Aplicar Ajustes</button>
     </div>
-   
   </form>
 
   <!-- Exibir mensagens de feedback -->

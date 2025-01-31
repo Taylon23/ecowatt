@@ -1,6 +1,7 @@
 from django import forms
 from . import choice
 from . import models
+from django.core.exceptions import ValidationError
 
 
 class CalculoConsumoForm(forms.ModelForm):
@@ -69,10 +70,27 @@ class PlanoEconomiaForm(forms.ModelForm):
             'meta_consumo_mensal': forms.NumberInput(attrs={
                 'placeholder': 'Meta de consumo mensal em kWh (opcional)'
             }),
-            'estabelecimento': forms.Select(),
         }
 
+    def clean_meta_gasto_mensal(self):
+        meta_gasto_mensal = self.cleaned_data.get('meta_gasto_mensal')
+        if meta_gasto_mensal <= 0:
+            raise ValidationError(
+                "A meta de gasto mensal deve ser maior que zero.")
+        return meta_gasto_mensal
+
+    def clean_meta_consumo_mensal(self):
+        meta_consumo_mensal = self.cleaned_data.get('meta_consumo_mensal')
+        if meta_consumo_mensal and meta_consumo_mensal <= 0:
+            raise ValidationError(
+                "A meta de consumo mensal deve ser maior que zero.")
+        return meta_consumo_mensal
+
     def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)  # Recebe o usuário do argumento
         super().__init__(*args, **kwargs)
-        # Desabilitar o campo 'estabelecimento' para edição
-        self.fields['estabelecimento'].widget.attrs['readonly'] = True
+
+        # Filtra os estabelecimentos do usuário logado
+        if user:
+            self.fields['estabelecimento'].queryset = models.Estabelecimento.objects.filter(
+                user=user)

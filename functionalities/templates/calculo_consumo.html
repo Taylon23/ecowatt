@@ -33,16 +33,33 @@
         <label for="id_potencia">Potência (W)</label>
         {{ form.potencia }}
     </div>
+    {% if form.potencia.errors %}
+        <div class="text-danger">
+            {{ form.potencia.errors|join:", " }}
+        </div>
+    {% endif %}
 
     <div class="form-group">
         <label for="id_horas_por_dia">Horas de Uso por Dia</label>
         {{ form.horas_por_dia }}
     </div>
+    {% if form.horas_por_dia.errors %}
+        <div class="text-danger">
+            {{ form.horas_por_dia.errors|join:", " }}
+        </div>
+    {% endif %}
 
     <div class="form-group">
         <label for="id_tarifa_por_kwh">Tarifa por kWh (R$)</label>
         {{ form.tarifa_por_kwh }}
     </div>
+    {% if form.tarifa_por_kwh.errors %}
+        <div class="text-danger">
+            {{ form.tarifa_por_kwh.errors|join:", " }}
+        </div>
+    {% endif %}
+
+
 
     <button type="submit" class="btn btn-submit">Calcular</button>
 </form>

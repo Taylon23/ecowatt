@@ -11,6 +11,10 @@ class Estabelecimento(models.Model):
 
     def total_equipamentos(self):
         return self.equipamentos.count()
+    
+    def total_gasto_equipamentos(self):
+        return sum(equipamento.custoMensal for equipamento in self.equipamentos.all())
+ 
 
     def __str__(self):
         return f'{self.estabelecimento}'
@@ -91,6 +95,7 @@ from django.db import models
 
 class Ajuste(models.Model):
     estabelecimento = models.ForeignKey('Estabelecimento', on_delete=models.CASCADE)
+    equipamento = models.ForeignKey('Equipamento', on_delete=models.CASCADE)  # Campo obrigatório
     descricao = models.TextField()
     data_aplicacao = models.DateTimeField(auto_now_add=True)
 

@@ -75,8 +75,6 @@ def excluir_equipamento(request, equipamento_id):
     return render(request, 'confirmar_exclusao_equipamento.html', {'equipamento': equipamento})
 
 # CRUD para Estabelecimento
-
-
 @login_required
 def criar_estabelecimento(request):
     if request.method == 'POST':
@@ -136,14 +134,14 @@ def excluir_estabelecimento(request, estabelecimento_id):
 @login_required
 def criar_plano_economia(request):
     if request.method == 'POST':
-        form = PlanoEconomiaForm(request.POST)
+        form = PlanoEconomiaForm(request.POST, user=request.user)
         if form.is_valid():
             plano = form.save(commit=False)
             plano.user = request.user
             plano.save()
             return redirect('listar-planos-economia')
     else:
-        form = PlanoEconomiaForm()
+        form = PlanoEconomiaForm(user=request.user)
     return render(request, 'criar_plano_economia.html', {'form': form})
 
 
@@ -221,7 +219,7 @@ def editar_plano(request, id):
             form.save()
             messages.success(request, 'Plano atualizado com sucesso!')
             # Substitua pelo nome da URL que lista os planos
-            return redirect('ver-plano-grafico', plano_id=plano.id)
+            return redirect('listar-planos-economia')
         else:
             messages.error(
                 request, 'Erro ao atualizar o plano. Verifique os dados fornecidos.')
@@ -275,7 +273,7 @@ def salvar_ordem(request):
 
 @login_required
 def dicas_economia(request, estabelecimento_id):
-    # Obtenha o estabelecimento (considerando que o usuário só pode acessar seu próprio estabelecimento)
+    # Obtenha o estabelecimento
     estabelecimento = get_object_or_404(
         models.Estabelecimento, id=estabelecimento_id, user=request.user)
 
@@ -284,7 +282,7 @@ def dicas_economia(request, estabelecimento_id):
 
     # Se o formulário de ajustes foi enviado, aplicamos os ajustes
     if request.method == 'POST':
-        ajustes = dicas.aplicar_ajustes()
+        ajustes = dicas.aplicar_ajustes()  # Chamada correta, sem argumentos extras
 
         # Adiciona uma mensagem de sucesso
         messages.success(request, 'Ajustes aplicados com sucesso!')
@@ -295,9 +293,18 @@ def dicas_economia(request, estabelecimento_id):
     # Caso contrário, apenas exibe as dicas sem aplicar ajustes
     ajustes = models.Ajuste.objects.filter(
         estabelecimento=estabelecimento).order_by('-data_aplicacao')
+    
+    # Agrupar ajustes por equipamento
+    ajustes_por_equipamento = {}
+    for ajuste in ajustes:
+        equipamento = ajuste.equipamento.nome_personalizado  # Agora isso funcionará, pois o campo 'nome' existe
+        if equipamento not in ajustes_por_equipamento:
+            ajustes_por_equipamento[equipamento] = []
+        ajustes_por_equipamento[equipamento].append(ajuste)
 
     return render(request, 'dicas_economia.html', {
         'estabelecimento': estabelecimento,
         'dicas': dicas.calcular_dicas(),
         'ajustes': ajustes,  # Passa os ajustes aplicados para o template
+        "ajustes_por_equipamento": ajustes_por_equipamento,
     })
