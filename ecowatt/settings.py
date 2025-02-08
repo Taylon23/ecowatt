@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'fontawesome',
     'user',
     'main_pages',
-    'functionalities',
+    'dashboard',
 ]
 
 MIDDLEWARE = [

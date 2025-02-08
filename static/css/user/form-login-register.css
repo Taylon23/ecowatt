@@ -1,9 +1,11 @@
+/* Estilos específicos para o login */
 #logomarca-img {
   width: 200px;
   height: 50px;
   object-fit: cover;
   margin: 1em 0 0 1em;
 }
+
 .login-container {
   display: flex;
   justify-content: space-evenly;
@@ -13,32 +15,23 @@
   padding: 20px;
 }
 
-/* Estilo da imagem */
 .login-image img {
   max-width: 400px;
   width: 100%;
   border-radius: 10px;
 }
 
-.login-form form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Estilo do formulário */
 .login-form {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  color: #fff;
   width: 30%;
 }
 
 .login-form h2 {
   margin-bottom: 20px;
   text-align: center;
-  color: #79f297; /* Verde claro */
+  color: var(--green-accent);
 }
 
 .form-group {
@@ -48,32 +41,32 @@
 .form-group label {
   display: block;
   margin-bottom: 5px;
-  color: #1a1a1a;
+  color: var(--text-gray);
   font-weight: bold;
 }
 
 .form-group input {
   width: 94%;
   padding: 10px;
-  border: 1px solid #ddd; /* Azul médio */
+  border: 1px solid var(--gray-light);
   border-radius: 5px;
-  color: #1a1a1a;
+  color: var(--text-gray);
   font-size: 1rem;
 }
 
 .form-group input::placeholder {
-  color: #c2d2f2; /* Azul fraco */
+  color: var(--text-gray-light);
 }
 
 .form-group input:focus {
-  border-color: #79f297; /* Verde claro */
+  border-color: var(--green-accent);
   outline: none;
 }
-/* Botão de envio */
+
 .btn-submit {
   width: 100%;
   padding: 10px;
-  background-color: #5db874; /* Verde claro */
+  background-color: var(--green-accent);
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -83,22 +76,23 @@
 }
 
 .btn-submit:hover {
-  background-color: #54a368; /* Verde escuro */
+  background-color: var(--green-medium-light);
 }
 
 .content-singup-login {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  color: #1a1a1a;
-}
-.content-singup-login span a{
-  color: #61cc7c;
-  transition: all .3s ease;
+  color: var(--text-gray);
 }
 
-.content-singup-login span a:hover{
-    color: #60bf78;
+.content-singup-login span a {
+  color: var(--green-accent);
+  transition: all 0.3s ease;
+}
+
+.content-singup-login span a:hover {
+  color: var(--green-medium-light);
 }
 
 .messages .alert {
@@ -126,18 +120,19 @@
 .alert-error {
   background-color: #f8d7da;
   color: #721c24;
-  border: 1px solid #f5c6cb; /* Borda mais clara para erros */
+  border: 1px solid #f5c6cb;
 }
 
-
-@media (max-width: 768px){
-  .login-image img{
+@media (max-width: 768px) {
+  .login-image img {
     display: none;
   }
-  .login-container{
+
+  .login-container {
     gap: 0;
   }
-  .login-form{
+
+  .login-form {
     width: 100%;
   }
 }

@@ -1,0 +1,50 @@
+/* Estilo para o card principal */
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .card-header {
+    border-radius: 15px 15px 0 0;
+  }
+  
+  /* Estilo para a lista de passos */
+  .list-group-item {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .list-group-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo para os botões de concluir passo */
+  .btn-outline-primary {
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 14px;
+  }
+  
+  .btn-outline-primary:hover {
+    background-color: #0d6efd;
+    color: white;
+  }
+  
+  /* Estilo para o alerta de conclusão */
+  .alert-success {
+    border-radius: 10px;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+    color: #0f5132;
+  }
+  
+  /* Estilo para o badge de concluído */
+  .badge {
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+  }

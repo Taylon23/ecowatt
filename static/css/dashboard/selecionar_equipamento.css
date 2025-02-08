@@ -1,0 +1,77 @@
+/* Estilo para a lista de equipamentos */
+.logomarca {
+  width: 200px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.equipamentos-list {
+  display: grid; /* Usando grid ao invés de flex */
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas com tamanho igual */
+  width: 100%;
+  gap: 20px;
+  padding: 20px;
+}
+
+.equipamento-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer; /* Mostra que o item é clicável */
+}
+
+.equipamento-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.equipamento-item.equipamento-selecionado {
+  background-color: var(--blue-button); /* Cor de fundo quando selecionado */
+}
+
+.equipamento-label {
+  display: block;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.equipamento-content {
+  display: flex;
+  align-items: center;
+}
+
+.equipamento-info h5 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text-gray);
+}
+
+.equipamento-info p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: var(--text-gray);
+}
+
+.equipamento-checkbox {
+  display: none; /* Esconde o checkbox padrão */
+}
+
+/* Botão de confirmar */
+#btn-confirmar {
+  margin-top: 20px;
+}

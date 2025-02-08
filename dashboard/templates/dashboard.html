@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoWatt Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/dashboard/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/css-global.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+      rel="stylesheet"
+    />
+</head>
+
+<body>
+    <!-- Menu Lateral -->
+    <div class="sidebar">
+        <img class="logomarca" src="{% static 'img/main_pages/ECOWATT.png' %}" alt="">
+        <a href="#"><i class="fas fa-bolt"></i> Desafios</a>
+        <a href="#"><i class="fas fa-trophy"></i> Pontuação</a>
+        <a href="#"><i class="fas fa-user"></i> Perfil</a>
+        <a href="#"><i class="fas fa-cog"></i> Configurações</a>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-content">
+        <!-- Cabeçalho -->
+        <div class="dashboard-header">
+            <h1>Meus Desafios</h1>
+            <button class="btn-danger btn-start"><i class="fas fa-sign-out-alt"></i> Sair</button>
+        </div>
+
+        <!-- Área Central -->
+        <div class="row">
+            <div class="col-md-8">
+                {% if desafios %}
+                    <!-- Loop para exibir os desafios -->
+                    {% for desafio in desafios %}
+                        <div class="challenge-card">
+                            <h3><i class="fas fa-lightbulb"></i> {{ desafio.titulo }}</h3>
+                            <p>{{ desafio.descricao }}</p>
+                            <button class="btn btn-start">
+                                <a href="{% url 'detalhes-desafio' desafio.id %}">Começar</a>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <!-- Mensagem caso não haja desafios -->
+                    <div class="alert alert-info" role="alert">
+                        <h4><i class="fas fa-info-circle"></i> Nenhum desafio disponível</h4>
+                        <p>Parece que você já completou todos os desafios disponíveis ou não há desafios relacionados aos seus equipamentos.</p>
+                        <a href="{% url 'selecionar-equipamentos' %}" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Cadastrar Equipamentos
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Painel Lateral Direito -->
+            <div class="col-md-4">
+                <div class="right-panel">
+                    <!-- Exibição da Patente -->
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Minha Patente</h5>
+                            <div class="patente-badge">
+                                <span class="badge bg-primary">{{ perfil.get_patente_display }}</span>
+                            </div>
+                            <p class="card-text mt-2">{{ perfil.descricao_patente }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Pontuação Atual -->
+                    <h4><i class="fas fa-star"></i> Pontuação Atual</h4>
+                    <h2>{{ pontuacao_atual }} XP</h2>
+
+                    <!-- Progresso das Metas -->
+                    <h5 class="mt-4"><i class="fas fa-tasks"></i> Progresso das Metas</h5>
+                    <div class="progress mb-3">
+                        <div class="progress-bar" role="progressbar" style="width: 70%;">70%</div>
+                    </div>
+
+                    <!-- Missão do Dia -->
+                    <h5><i class="fas fa-bullseye"></i> Missão do Dia</h5>
+                    <p>Ganhe 20 XP usando menos o ar-condicionado!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

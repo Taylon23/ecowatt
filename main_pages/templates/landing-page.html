@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecowatt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/css-global.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'css/main_pages/landing-page.css' %}"
+    />
+  </head>
+  <body>
+      <nav class="NavBar">
+        <a href=""
+          ><img
+            class="logomarca"
+            src="{% static 'img/main_pages/ECOWATT.png' %}"
+            alt=""
+        /></a>
+        <a class="button-register-navbar" href="{% url 'register' %}"
+          >Comece agora</a
+        >
+      </nav>
+    <main class="Container">
+      <section class="section-link-login-register">
+        <div class="content-img-link-register">
+          <img
+            src="{% static 'img/main_pages/Img-apresentacao.png' %}"
+            alt=""
+          />
+          <div class="content-link-register">
+            <h1>O jeito divertido, fácil e eficaz de economizar energia!</h1>
+            <a class="button-register" href="{% url 'login' %}">Fazer login</a>
+            <a class="button-login" href="{% url 'register' %}"
+              >Não tenho uma conta</a
+            >
+          </div>
+        </div>
+      </section>
+      <!-- Seção 1: Como funciona o app? -->
+      <section class="section-funcionalidades">
+        <div class="content">
+          <h2><i class="fas fa-cogs"></i> O que é o Ecowatt?</h2>
+          <p>
+            O Ecowatt é um aplicativo de eficiência energética que ajuda você a
+            reduzir o consumo de energia em casa. Com dicas personalizadas,
+            sugestões inteligentes e desafios divertidos, você aprende a
+            economizar energia de forma simples e eficaz.
+          </p>
+          <p>
+            Nosso sistema analisa seus hábitos e oferece recomendações
+            específicas para sua rotina, tornando a economia de energia algo
+            natural e gratificante.
+          </p>
+        </div>
+        <img
+          src="{% static 'img/main_pages/img-apresentacao-2.png' %}"
+          alt=""
+        />
+      </section>
+
+      <!-- Seção 2: Benefícios de usar o Ecowatt -->
+      <section class="section-beneficios">
+        <div class="container">
+          <div class="row align-items-center">
+            <!-- Coluna dos cards -->
+            <div class="col-md-8">
+              <h2><i class="fas fa-star"></i> Benefícios de usar o Ecowatt</h2>
+              <p>
+                Com o Ecowatt, você não só economiza dinheiro, mas também
+                contribui para um futuro mais sustentável.
+              </p>
+              <div class="row">
+                <!-- Card 1: Economize na conta de energia -->
+                <div class="col-md-6 mb-4">
+                  <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                      <i
+                        class="fas fa-check-circle fa-2x text-success mb-3"
+                      ></i>
+                      <h5 class="card-title">Economize na conta de energia</h5>
+                      <p class="card-text">
+                        Reduza seus gastos com energia elétrica de forma
+                        divertida.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Dicas personalizadas -->
+                <div class="col-md-6 mb-4">
+                  <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                      <i
+                        class="fas fa-check-circle fa-2x text-success mb-3"
+                      ></i>
+                      <h5 class="card-title">Dicas personalizadas</h5>
+                      <p class="card-text">
+                        Receba sugestões adaptadas à sua rotina e perfil de
+                        consumo.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3: Desafios e recompensas -->
+                <div class="col-md-6 mb-4">
+                  <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                      <i
+                        class="fas fa-check-circle fa-2x text-success mb-3"
+                      ></i>
+                      <h5 class="card-title">Desafios e recompensas</h5>
+                      <p class="card-text">
+                        Participe de desafios, ganhe pontos e conquiste
+                        medalhas.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 4: Hábitos sustentáveis -->
+                <div class="col-md-6 mb-4">
+                  <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                      <i
+                        class="fas fa-check-circle fa-2x text-success mb-3"
+                      ></i>
+                      <h5 class="card-title">Hábitos sustentáveis</h5>
+                      <p class="card-text">
+                        Adote práticas que ajudam o planeta e promovem um futuro
+                        melhor.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <img
+                src="{% static 'img/main_pages/img-apresentacao-3.png' %}"
+                alt="Benefícios do Ecowatt"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 3: Desafios e recompensas -->
+      <section class="section-desafios">
+        <img
+          src="{% static 'img/main_pages/img-apresentacao-4.png' %}"
+          alt="Benefícios do Ecowatt"
+        />
+        <div class="content">
+          <h2><i class="fas fa-trophy"></i> Desafios e recompensas</h2>
+          <p>
+            No Ecowatt, economizar energia é uma experiência divertida! Complete
+            desafios, acumule pontos, suba de nível e conquiste medalhas
+            exclusivas.
+          </p>
+          <p>
+            Compartilhe suas conquistas com amigos e familiares, e inspire
+            outras pessoas a adotarem hábitos mais sustentáveis.
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <!-- Informações de Contato -->
+        <div class="footer-section">
+          <h4>Contato</h4>
+          <p>Endereço: Rua da energia, 123</p>
+          <p>Telefone: (99) 99999-9999</p>
+          <p>Email: contato@ecowatt.com</p>
+        </div>
+
+        <!-- Links Úteis -->
+        <div class="footer-section">
+          <h4>Links Úteis</h4>
+          <ul>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+        </div>
+
+        <!-- Redes Sociais -->
+        <div class="footer-section">
+          <h4>Siga-nos</h4>
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <!-- Créditos -->
+      <div class="footer-section dieritos-autorais">
+        <p>&copy; 2024 ECOWATT. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+  </body>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>

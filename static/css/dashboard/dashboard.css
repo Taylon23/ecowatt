@@ -1,0 +1,174 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: #fcfcfc;
+}
+
+.logomarca{
+    width: 200px;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* Menu Lateral */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    padding: 20px 10px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+.sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px;
+    color: var(--text-gray);
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.sidebar a:hover {
+    background-color: var(--green-accent);
+    transform: translateX(5px);
+}
+
+.sidebar i {
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+/* Conteúdo Principal */
+.main-content {
+    margin-left: 260px;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+    font-size: 28px;
+    color: var(--green-accent);
+
+}
+
+/* Cards de Desafio */
+.challenge-card {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.challenge-card a{
+    color: #fff;
+    text-decoration: none;
+}
+.challenge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.challenge-card h3 {
+    color: var(--green-very-dark);
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.challenge-card p {
+    color: var(--text-gray);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Botões */
+.btn-start {
+    background-color: var(--blue-button);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-start:hover {
+    background-color: var(--blue-button-hover);
+}
+
+/* Painel Lateral Direito */
+.right-panel {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.right-panel h4 {
+    color: var(--green-very-dark);
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.right-panel h2 {
+    color: var(--green-accent);
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.right-panel h5 {
+    color: var(--green-very-dark);
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.right-panel p {
+    color: var(--text-gray);
+    font-size: 14px;
+}
+
+.progress-bar {
+    background-color: var(--green-accent);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 10px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dashboard-header h1 {
+        font-size: 24px;
+    }
+
+    .btn-start {
+        margin-top: 10px;
+    }
+
+    .challenge-card {
+        margin-bottom: 15px;
+    }
+}
