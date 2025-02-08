@@ -10,7 +10,8 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import SignUpForm
-from .forms import ProfileForm
+from .forms import UserPerfilForm
+from .models import UserPerfil
 from django.contrib.auth.views import LoginView
 from django.contrib import messages
 
@@ -75,27 +76,38 @@ def activate(request, uidb64, token):
     else:
         return HttpResponse("Link de ativação inválido!")
 
-
 @login_required
 def perfil(request):
-    perfil = request.user
-
-    return render(request, 'perfil.html', {'perfil': perfil})
+    # Obtém o usuário logado
+    user = request.user
+    
+    # Obtém o perfil estendido (UserPerfil) relacionado ao usuário
+    try:
+        perfil = user.perfil_energia  # Usa o related_name definido no modelo
+    except UserPerfil.DoesNotExist:
+        # Se o perfil não existir, cria um perfil vazio
+        perfil = UserPerfil(usuario=user)
+        perfil.save()
+    
+    return render(request, 'perfil.html', {'perfil': user, 'user_perfil': perfil})
 
 
 @login_required
-def editar_perfil(request):
-    perfil = request.user.profile  # Pega o perfil do usuário atual
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=perfil)
-        if form.is_valid():
-            form.save()  # Salva as alterações no perfil
-            messages.success(request, 'Perfil atualizado com sucesso!')
-            return redirect('perfil')  # Redireciona para a página de perfil
-    else:
-        form = ProfileForm(instance=perfil)
+def completar_perfil(request):
+    try:
+        perfil = request.user.perfil_energia
+    except UserPerfil.DoesNotExist:
+        perfil = UserPerfil(usuario=request.user)
 
-    return render(request, 'editar_perfil.html', {'form': form})
+    if request.method == "POST":
+        form = UserPerfilForm(request.POST, request.FILES, instance=perfil)  # Adicione request.FILES aqui
+        if form.is_valid():
+            form.save()
+            return redirect('perfil')  # Redirecionar para a página de perfil
+    else:
+        form = UserPerfilForm(instance=perfil)
+
+    return render(request, 'completar_perfil.html', {'form': form})
 
 
 class CustomLoginView(LoginView):

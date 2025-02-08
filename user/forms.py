@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import UserPerfil
+
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -30,12 +31,11 @@ class SignUpForm(UserCreationForm):
         return cleaned_data
 
 
-class ProfileForm(forms.ModelForm):
+class UserPerfilForm(forms.ModelForm):
     class Meta:
-        model = Profile
-        fields = ['nome_completo', 'data_nascimento', 'endereco']  # Campos que o usuário poderá editar
+        model = UserPerfil
+        fields = ['nome_completo', 'data_nascimento', 'cep', 'endereco', 'estado', 'cidade','foto']
 
-    # Adicionando rótulos personalizados, se necessário
     nome_completo = forms.CharField(
         label='Nome Completo', 
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu nome completo'})
@@ -46,7 +46,28 @@ class ProfileForm(forms.ModelForm):
         widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'})
     )
 
+    cep = forms.CharField(
+        label='CEP', 
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu CEP'})
+    )
+
     endereco = forms.CharField(
         label='Endereço', 
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu endereço'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Endereço completo'})
+    )
+
+    estado = forms.CharField(
+        label='Estado', 
+        widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': True})
+    )
+
+    cidade = forms.CharField(
+        label='Cidade', 
+        widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': True})
+    )
+    
+    foto = forms.ImageField(
+        label='Foto de Perfil', 
+        widget=forms.ClearableFileInput(attrs={'class': 'form-control'}),
+        required=False  # Torna o campo opcional
     )

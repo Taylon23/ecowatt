@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 80vh;
   gap: 30px;
   padding: 20px;
 }
@@ -16,17 +15,17 @@
 
 /* Estilo do formulário */
 .perfil-info {
-  padding: 30px;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  color: #fff;
+  color: var(--text-gray);
   width: 60%;
 }
 
 .perfil-info h2 {
   margin-bottom: 20px;
   text-align: center;
-  color: #4CAF50; /* Verde claro */
+  color: var(--green-accent); /* Verde claro */
 }
 
 .form-group {
@@ -41,7 +40,7 @@
 }
 
 .form-group input {
-  width: 94%;
+  width: 100%;
   padding: 10px;
   border: 1px solid #ddd; /* Azul médio */
   border-radius: 5px;
@@ -54,7 +53,7 @@
 }
 
 .form-group input:focus {
-  border-color: #79f297; /* Verde claro */
+  border-color: var(--green-accent); /* Verde claro */
   outline: none;
 }
 
@@ -62,7 +61,7 @@
 .btn-submit {
   width: 100%;
   padding: 10px;
-  background-color: #5db874; /* Verde claro */
+  background-color: var(--green-medium-light); /* Verde claro */
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -72,7 +71,7 @@
 }
 
 .btn-submit:hover {
-  background-color: #54a368; /* Verde escuro */
+  background-color: --green-very-dark; /* Verde escuro */
 }
 
 .content-singup-login {
@@ -80,14 +79,6 @@
   align-items: center;
   justify-content: flex-end;
   color: #1a1a1a;
-}
-.content-singup-login span a {
-  color: #61cc7c;
-  transition: all 0.3s ease;
-}
-
-.content-singup-login span a:hover {
-  color: #60bf78;
 }
 
 .messages .alert {

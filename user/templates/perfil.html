@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-
+{% extends 'dashboard.html' %}
 {% load static %}
 
 {% block title %}
@@ -10,20 +9,22 @@
     <link rel="stylesheet" href="{% static 'css/user/perfil.css' %}" />
 {% endblock %}
 
+{% block titulo_dashboard %}
+        <div></div>
+        {% endblock %}
 {% block main %}
 <div class="perfil-container">
-    <div class="content-dropdown-resource">
-        <div class="dropdown-resource">
-            <div class="dropdown-toggle" aria-label="Abrir menu do perfil">
-              <i class="fas fa-bars"></i>
-            </div>
-            <div class="dropdown-menu-resource">
+    <h1>Meu Perfil</h1>
     
-            </div>
-        </div>
+    <!-- Foto de perfil -->
+    <div class="perfil-foto">
+        {% if user_perfil.foto %}
+            <img src="{{ user_perfil.foto.url }}" alt="Foto de perfil">
+        {% else %}
+            <i class="fas fa-user icone-usuario"></i>
+        {% endif %}
     </div>
     
-    <h1>Meu Perfil</h1>
     {% if messages %}
     <div class="messages">
         {% for message in messages %}
@@ -42,18 +43,21 @@
             <strong>Email:</strong> <span>{{ perfil.email }}</span>
         </div>
         <div class="info-item">
-            <strong>Nome Completo:</strong> <span>{{ perfil.profile.nome_completo }}</span>
+            <strong>Nome Completo:</strong> <span>{{ user_perfil.nome_completo }}</span>
         </div>
         <div class="info-item">
-            <strong>Data de Nascimento:</strong> <span>{{ perfil.profile.data_nascimento }}</span>
+            <strong>CPF:</strong> <span>{{ user_perfil.cpf }}</span>
         </div>
         <div class="info-item">
-            <strong>Endereço:</strong> <span>{{ perfil.profile.endereco }}</span>
+            <strong>Data de Nascimento:</strong> <span>{{ user_perfil.data_nascimento }}</span>
+        </div>
+        <div class="info-item">
+            <strong>Endereço:</strong> <span>{{ user_perfil.endereco }}</span>
         </div>
     </div>
     
     <div class="perfil-actions">
-        <a href="{% url 'editar_perfil' %}" class="btn btn-edit">Editar Perfil</a>
+        <a href="{% url 'completar-perfil' %}" class="btn btn-edit">Editar Perfil</a>
     </div>
 </div>
 {% endblock %}
