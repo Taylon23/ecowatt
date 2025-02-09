@@ -23,7 +23,8 @@ class SignUpForm(UserCreationForm):
         email = cleaned_data.get('email')
 
         if User.objects.filter(username=username).exists():
-            self.add_error('username', 'Este nome de usuário já está em uso. Por favor, escolha outro.')
+            self.add_error(
+                'username', 'Este nome de usuário já está em uso. Por favor, escolha outro.')
 
         if User.objects.filter(email=email).exists():
             self.add_error('email', 'Este e-mail já está em uso.')
@@ -34,40 +35,54 @@ class SignUpForm(UserCreationForm):
 class UserPerfilForm(forms.ModelForm):
     class Meta:
         model = UserPerfil
-        fields = ['nome_completo', 'data_nascimento', 'cep', 'endereco', 'estado', 'cidade','foto']
+        fields = ['nome_completo', 'data_nascimento', 'cep',
+                  'cpf', 'endereco', 'estado', 'cidade', 'foto']
 
     nome_completo = forms.CharField(
-        label='Nome Completo', 
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu nome completo'})
+        label='Nome Completo',
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'placeholder': 'Digite seu nome completo'})
     )
-    
+
     data_nascimento = forms.DateField(
-        label='Data de Nascimento', 
-        widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'})
+        label='Data de Nascimento',
+        widget=forms.DateInput(
+            attrs={'class': 'form-control', 'type': 'date'}),
+        input_formats=['%Y-%m-%d'],  # Garante o formato correto
+        required=False  # Para evitar erro se o campo estiver vazio
     )
 
     cep = forms.CharField(
-        label='CEP', 
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu CEP'})
+        label='CEP',
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'placeholder': 'Digite seu CEP'})
+    )
+    cpf = forms.CharField(
+        label='CPF',
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'placeholder': 'Digite seu CPF'})
     )
 
     endereco = forms.CharField(
-        label='Endereço', 
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Endereço completo'})
+        label='Endereço',
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'placeholder': 'Endereço completo'})
     )
 
     estado = forms.CharField(
-        label='Estado', 
-        widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': True})
+        label='Estado',
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'readonly': True})
     )
 
     cidade = forms.CharField(
-        label='Cidade', 
-        widget=forms.TextInput(attrs={'class': 'form-control', 'readonly': True})
+        label='Cidade',
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'readonly': True})
     )
-    
+
     foto = forms.ImageField(
-        label='Foto de Perfil', 
+        label='Foto de Perfil',
         widget=forms.ClearableFileInput(attrs={'class': 'form-control'}),
         required=False  # Torna o campo opcional
     )

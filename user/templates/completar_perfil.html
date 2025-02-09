@@ -67,6 +67,18 @@
             </div>
 
             <div class="form-group">
+                <label for="id_cep">CPF</label>
+                {{ form.cpf }}
+                {% if form.cep.errors %}
+                <div class="error-message">
+                    {% for error in form.cep.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
                 <label for="id_endereco">Endereço</label>
                 {{ form.endereco }}
                 {% if form.endereco.errors %}
@@ -110,4 +122,9 @@
 
 {% block script %}
 <script src="{% static 'js/user/api-cep.js' %}"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- jQuery Mask Plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script src="{% static 'js/user/cpf-mask.js' %}"></script>
 {% endblock %}

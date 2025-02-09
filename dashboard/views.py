@@ -35,13 +35,11 @@ def dashboard(request):
 
     # Recupera o perfil do usuário e a pontuação atual
     perfil, created = PerfilGamer.objects.get_or_create(user=request.user)
-    pontuacao_atual = perfil.experiencia
 
     # Renderiza o template com os desafios e o perfil
     return render(request, 'dashboard.html', {
         'desafios': desafios_nao_concluidos,
-        'pontuacao_atual': pontuacao_atual,
-        'perfil': perfil  # <-- Adicionado aqui
+        
     })
 
 
