@@ -23,7 +23,7 @@
     <!-- Menu Lateral -->
     <div class="sidebar">
         <img class="logomarca" src="{% static 'img/main_pages/ECOWATT.png' %}" alt="" />
-        <a href="{% url 'dashboard' %}"><i class="fas fa-bolt"></i> Desafios</a>
+        <a href="{% url 'dashboard' %}"><i class="fas fa-tasks"></i> Tarefas</a>
         <a href="#"><i class="fas fa-trophy"></i> Pontuação</a>
         <a href="{% url 'perfil' %}"><i class="fas fa-user"></i> Perfil</a>
         <a href="#"><i class="fas fa-cog"></i> Configurações</a>
@@ -34,7 +34,7 @@
         <!-- Cabeçalho -->
         <div class="dashboard-header">
             {% block titulo_dashboard %}
-            <h1>Meus Desafios</h1>
+            <h1>Tarefas abertas</h1>
             {% endblock %}
             <!-- <form id="logout-form" method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
@@ -49,22 +49,20 @@
             <div class="col-md-8">
                 {% block main %}
                 <!-- Conteúdo principal padrão -->
-                {% if desafios %}
-                <!-- Loop para exibir os desafios -->
-                {% for desafio in desafios %}
+                {% if tarefas %}
+                <!-- Loop para exibir os tarefas -->
+                {% for tarefa in tarefas %}
                 <div class="challenge-card">
-                    <h3><i class="fas fa-lightbulb"></i> {{ desafio.titulo }}</h3>
-                    <p>{{ desafio.descricao }}</p>
-                    <button class="btn btn-start">
-                        <a href="{% url 'detalhes-desafio' desafio.id %}">Começar</a>
-                    </button>
+                    <h3><i class="fas fa-tasks"></i> {{ tarefa.titulo }}</h3>
+                    <p>{{ tarefa.descricao }}</p>
+                        <a class="btn btn-primary" href="{% url 'detalhes-tarefa' tarefa.id %}">Começar</a>
                 </div>
                 {% endfor %} {% else %}
-                <!-- Mensagem caso não haja desafios -->
+                <!-- Mensagem caso não haja tarefas -->
                 <div class="alert alert-info" role="alert">
-                    <h4><i class="fas fa-info-circle"></i> Nenhum desafio disponível</h4>
+                    <h4><i class="fas fa-info-circle"></i> Nenhuma tarefa disponível</h4>
                     <p>
-                        Parece que você já completou todos os desafios disponíveis ou não há desafios relacionados aos seus equipamentos.
+                        Parece que você já completou todas as tarefas disponíveis ou não há tarefas relacionados aos seus equipamentos.
                     </p>
                     <a href="{% url 'selecionar-equipamentos' %}" class="btn btn-primary">
                         <i class="fas fa-plus"></i> Cadastrar Equipamentos
@@ -74,39 +72,53 @@
             </div>
 
             <!-- Painel Lateral Direito -->
-            <div class="col-md-4">
-                <div class="right-panel">
-                    <!-- Exibição da Patente -->
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Minha Patente</h5>
-                            <div class="patente-badge">
-                                <span class="badge bg-primary">{{ patente }}</span>
-                            </div>
-                            <p class="card-text mt-2">{{ perfil.descricao_patente }}</p>
-                        </div>
-                    </div>
+<div class="col-md-4">
+    <div class="right-panel">
+        <!-- Exibição da Patente -->
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Minha Patente</h5>
+                <div class="patente-badge">
+                    <span class="badge bg-primary">{{ request.user.perfil.patente }}</span>
+                </div>
+                <p class="card-text mt-2">{{ request.user.perfil.descricao_patente }}</p>
+            </div>
+        </div>
 
-                    <!-- Pontuação Atual -->
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h4><i class="fas fa-star"></i> Pontuação Atual</h4>
-                            <h2>{{ pontuacao_atual }} XP</h2>
-                            <div class="progress mb-3">
-                                <div class="progress-bar" role="progressbar" style="width: 70%">70%</div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Exibição do Nível -->
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Meu Nível</h5>
+                <div class="nivel-badge">
+                    <span class="badge bg-success">Nível {{ request.user.perfil.nivel }}</span>
+                </div>
+                <p class="card-text mt-2">Continue completando tarefas para subir de nível!</p>
+            </div>
+        </div>
 
-                    <!-- Missão do Dia -->
-                    <div class="card">
-                        <div class="card-body">
-                            <h5><i class="fas fa-bullseye"></i> Missão do Dia</h5>
-                            <p>Ganhe 20 XP usando menos o ar-condicionado!</p>
-                        </div>
+        <!-- Pontuação Atual -->
+        <div class="card mb-3">
+            <div class="card-body">
+                <h4><i class="fas fa-star"></i> Total de XP</h4>
+                <h2>{{ request.user.perfil.experiencia }} XP</h2>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: {{ request.user.perfil.progresso_para_proximo_nivel|floatformat:0 }}%;">
+                        {{ request.user.perfil.progresso_para_proximo_nivel|floatformat:0 }}%
                     </div>
                 </div>
+                <p>Aumente XP para subir de nivel</p>
             </div>
+        </div>
+
+        <!-- Missão do Dia -->
+        <!-- <div class="card">
+            <div class="card-body">
+                <h5><i class="fas fa-bullseye"></i> Missão do Dia</h5>
+                <p>Ganhe 20 XP usando menos o ar-condicionado!</p>
+            </div>
+        </div> -->
+    </div>
+</div>
         </div>
     </div>
 

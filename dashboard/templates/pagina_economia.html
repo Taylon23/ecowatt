@@ -1,0 +1,77 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block title %}Economia de Energia{% endblock %}
+
+{% block link_extras %}
+    <link rel="stylesheet" href="{% static 'css/user/pagina_economia.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/css-global.css' %}" />
+{% endblock %}
+
+{% block titulo_dashboard %}
+    <h1><i class="fas fa-leaf"></i> Economia de Energia</h1>
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card economia-card">
+                <div class="card-body">
+                    <h2 class="card-title">Seu Desempenho de Economia</h2>
+                    <div class="row">
+                        <div class="col-md-6 consumo-mes-col">
+                            <div class="consumo-mes">
+                                <h3><i class="fas fa-bolt"></i> Consumo Atual</h3>
+                                <p>{{ mes_atual }} kWh</p>
+                            </div>
+                        </div>
+                
+                        <!-- Consumo Anterior -->
+                        <div class="col-md-6 consumo-mes-col">
+                            <div class="consumo-mes">
+                                <h3><i class="fas fa-history"></i> Consumo Anterior</h3>
+                                <p>{{ mes_anterior }} kWh</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="economia-total">
+                        <h3><i class="fas fa-bolt"></i> Economia Total</h3>
+                        <p class="destaque">{{ economia|floatformat:1 }} kWh</p>
+                    </div>
+
+                    <div class="mensagem-cupom">
+                        <p>{{ mensagem_cupom }}</p>
+                        {% if user.perfil_energia.cupom %}
+                            <div class="cupom-box">
+                                <p>Seu cupom:</p>
+                                <span class="cupom-codigo">{{ user.perfil_energia.cupom }}</span>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="historico-consumo">
+                        <h3>Histórico de Consumo</h3>
+                        <table class="table table-striped">  <thead>
+                                <tr>
+                                    <th>Mês/Ano</th>
+                                    <th>Consumo (kWh)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for consumo in historico_consumos %}
+                                    <tr>
+                                        <td>{{ consumo.mes }}/{{ consumo.ano }}</td>
+                                        <td>{{ consumo.consumo }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

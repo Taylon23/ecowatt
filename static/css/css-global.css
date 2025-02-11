@@ -7,7 +7,7 @@
 
     --text-gray:#393939;
 
-    --blue-button:#4c96ca;
+    --blue-button:#0d6efd;
 
     --blue-button-hover:#6bb1e4;
 
@@ -19,9 +19,9 @@
     --green-dark: #067302; 
     /* Uma cor escura e vibrante, ótima para textos, botões de destaque ou elementos que precisam chamar atenção. */
 
-    --green-very-dark: #066203; 
+    --green-very-dark: #036221; 
     /* A mais escura do tema, ideal para textos em fundos claros, rodapés ou áreas que precisam de contraste forte. */
 
-    --green-accent: #62BF04; 
+    --green-accent: #10bf04; 
     /* Uma cor vibrante e chamativa, perfeita para botões principais, links ou elementos que precisam se destacar. */
 }

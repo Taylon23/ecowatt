@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Equipamento, Desafio, UserEquipamento, UserDesafio, PerfilGamer
+from .models import Equipamento, Tarefa, UserEquipamento, UserTarefa, PerfilGamer
 from .forms import EquipamentoForm
 
 
@@ -15,32 +15,29 @@ def selecionar_equipamentos(request):
 
 @login_required
 def dashboard(request):
-    # Recupera os IDs dos equipamentos do usuário
-    user_equipamentos = UserEquipamento.objects.filter(
-        user=request.user).values_list('equipamento', flat=True)
+    if request.user.is_authenticated:
+        # Filtra os equipamentos do usuário
+        user_equipamentos = UserEquipamento.objects.filter(
+            user=request.user
+        ).values_list('equipamento', flat=True)
 
-    # Filtra os desafios relacionados aos equipamentos do usuário
-    desafios = Desafio.objects.filter(
-        equipamentos__in=user_equipamentos).distinct()
+        # Filtra as tarefas relacionadas aos equipamentos do usuário
+        tarefas = Tarefa.objects.filter(
+            equipamentos__in=user_equipamentos
+        ).distinct()
 
-    # Filtra os desafios que o usuário ainda não completou
-    desafios_nao_concluidos = []
-    for desafio in desafios:
-        user_desafio, created = UserDesafio.objects.get_or_create(
-            user=request.user,
-            desafio=desafio
-        )
-        if not user_desafio.completo:
-            desafios_nao_concluidos.append(desafio)
+        # Filtra as tarefas não concluídas pelo usuário
+        tarefas_nao_concluidas = []
+        for tarefa in tarefas:
+            user_tarefa, created = UserTarefa.objects.get_or_create(
+                user=request.user,
+                tarefa=tarefa
+            )
+            if not user_tarefa.completo:
+                # Adiciona a instância de Tarefa
+                tarefas_nao_concluidas.append(tarefa)
 
-    # Recupera o perfil do usuário e a pontuação atual
-    perfil, created = PerfilGamer.objects.get_or_create(user=request.user)
-
-    # Renderiza o template com os desafios e o perfil
-    return render(request, 'dashboard.html', {
-        'desafios': desafios_nao_concluidos,
-        
-    })
+    return render(request, 'dashboard.html', {'tarefas': tarefas_nao_concluidas})
 
 
 @login_required
@@ -64,42 +61,42 @@ def salvar_equipamentos(request):
 
 
 @login_required
-def detalhes_desafio(request, desafio_id):
+def detalhes_tarefa(request, tarefa_id):
     # Obtém o desafio pelo ID ou retorna um erro 404 se não existir
-    desafio = get_object_or_404(Desafio, id=desafio_id)
+    tarefa = get_object_or_404(Tarefa, id=tarefa_id)
 
-    # Obtém ou cria uma entrada UserDesafio para o usuário logado
-    user_desafio, created = UserDesafio.objects.get_or_create(
+    # Obtém ou cria uma entrada UserTarefa para o usuário logado
+    user_tarefa, created = UserTarefa.objects.get_or_create(
         user=request.user,
-        desafio=desafio
+        tarefa=tarefa
     )
 
     # Renderiza o template com os detalhes do desafio e o status de conclusão
-    return render(request, 'desafio_detail.html', {
-        'desafio': desafio,
-        'user_desafio': user_desafio,
+    return render(request, 'tarefas_detail.html', {
+        'tarefa': tarefa,
+        'user_tarefa': user_tarefa,
     })
 
 
 @login_required
-def concluir_passo(request, desafio_id):
-    user_desafio = get_object_or_404(
-        UserDesafio, user=request.user, desafio_id=desafio_id)
+def concluir_passo(request, tarefa_id):
+    user_tarefa = get_object_or_404(
+        UserTarefa, user=request.user, tarefa_id=tarefa_id)
 
     # Verifica se o perfil do usuário existe
     perfil, created = PerfilGamer.objects.get_or_create(user=request.user)
 
-    user_desafio.concluir_passo()
-    return redirect('detalhes-desafio', desafio_id=desafio_id)
+    user_tarefa.concluir_passo()
+    return redirect('detalhes-tarefa', tarefa_id=tarefa_id)
 
 
 @login_required
-def marcar_desafio_completo(request, desafio_id):
-    desafio = get_object_or_404(Desafio, id=desafio_id)
-    user_desafio, created = UserDesafio.objects.get_or_create(
+def marcar_desafio_completo(request, tarefa_id):
+    tarefa = get_object_or_404(Tarefa, id=tarefa_id)
+    user_tarefa, created = UserTarefa.objects.get_or_create(
         user=request.user,
-        desafio=desafio
+        tarefa=tarefa
     )
-    user_desafio.completo = True
-    user_desafio.save()
-    return redirect('detalhes-desafio', desafio_id=desafio.id)
+    user_tarefa.completo = True
+    user_tarefa.save()
+    return redirect('detalhes-tarefa', tarefa_id=tarefa.id)

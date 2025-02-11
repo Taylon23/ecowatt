@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'ecowatt.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-from decouple import config
+""" 
 
 DATABASES = {
     'default': {
@@ -89,6 +89,13 @@ DATABASES = {
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': 'localhost',
         'PORT': '3306',
+    }
+} """
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # Cria o banco de dados na raiz do projeto
     }
 }
 
@@ -146,6 +153,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'landing-page'
 LOGIN_URL = 'login'
+
+
+from decouple import config
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

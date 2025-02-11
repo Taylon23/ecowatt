@@ -1,0 +1,173 @@
+/* Estilos Gerais */
+.economia-card {
+  margin-top: 30px;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.economia-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--text-gray);
+  font-size: 1.8em;
+  font-weight: 600;
+}
+
+/* Consumo Mensal */
+.consumo-mes {
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.consumo-mes:hover {
+  background-color: #e9ecef;
+}
+
+.consumo-mes h3 {
+  color: var(--text-gray);
+  margin-bottom: 10px;
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+.consumo-mes p {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--blue-button);
+  margin: 0;
+}
+
+/* Economia Total */
+.economia-total {
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 20px;
+  background-color: var(--green-accent);
+  border-radius: 10px;
+  color: white;
+}
+
+.economia-total h3 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.economia-total .destaque {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Mensagem e Cupom */
+.mensagem-cupom {
+  text-align: center;
+  margin-top: 25px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+.mensagem-cupom p {
+  font-size: 1.1em;
+  color: var(--text-gray);
+  margin-bottom: 10px;
+}
+
+.cupom-box {
+  background-color: var(--blue-button);
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+  display: inline-block;
+  color: white;
+}
+
+.cupom-codigo {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-left: 5px;
+}
+
+.historico-consumo {
+  margin-top: 30px; /* Espaçamento acima da tabela */
+}
+
+.historico-consumo h3 {
+  font-size: 1.4em;
+  font-weight: 500;
+  color: var(--text-gray);
+  margin-bottom: 15px;
+}
+
+.historico-consumo table {
+  width: 100%; /* Largura total da tabela */
+  border-collapse: collapse; /* Colapsa as bordas da tabela */
+  margin-bottom: 20px;
+}
+
+.historico-consumo th,
+.historico-consumo td {
+  padding: 10px; /* Espaçamento interno das células */
+  text-align: center; /* Alinhamento do texto nas células */
+  border: 1px solid #dee2e6; /* Borda das células (cor do Bootstrap) */
+}
+
+.historico-consumo th {
+  background-color: #f8f9fa; /* Cor de fundo do cabeçalho (cor do Bootstrap) */
+  font-weight: 500;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .card-title {
+    font-size: 1.5em;
+  }
+
+  .consumo-mes h3 {
+    font-size: 1.2em;
+  }
+
+  .consumo-mes p {
+    font-size: 1.3em;
+  }
+
+  .economia-total h3 {
+    font-size: 1.3em;
+  }
+
+  .economia-total .destaque {
+    font-size: 1.8em;
+  }
+
+  .mensagem-cupom p {
+    font-size: 1em;
+  }
+
+  .cupom-codigo {
+    font-size: 1em;
+  }
+
+  .consumo-mes-col {
+    /* Ajusta a largura das colunas de consumo */
+    width: 100%; /* Ocupa a largura total em telas menores */
+    margin-bottom: 20px; /* Adiciona espaçamento entre os blocos */
+  }
+
+  .historico-consumo table {
+    font-size: 0.9em; /* Diminui a fonte da tabela em telas menores */
+  }
+}

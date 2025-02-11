@@ -10,8 +10,6 @@ class PerfilGamer(models.Model):
     experiencia = models.PositiveIntegerField(default=0)  # XP acumulada
     patente = models.CharField(
         max_length=50, choices=PATENTES, default='INICIANTE')  # Patente atual
-    trofeus = models.ManyToManyField(
-        'Trofeu', blank=True)  # Troféus conquistados
 
     def __str__(self):
         return f"{self.user.username} - {self.get_patente_display()}"
@@ -51,21 +49,21 @@ class PerfilGamer(models.Model):
         # Verifica se a patente mudou, se mudou, atribui
         if novo_patente != self.patente:
             self.patente = novo_patente
+            
+    def progresso_para_proximo_nivel(self):
+        """
+        Calcula o progresso em porcentagem para o próximo nível.
+        """
+        xp_necessario = 50  # XP necessário para subir de nível
+        xp_atual = self.experiencia % xp_necessario  # XP acumulada no nível atual
+        return (xp_atual / xp_necessario) * 100  # Retorna a porcentagem
+
 
     def save(self, *args, **kwargs):
         self.atualizar_patente()  # Garante que a patente esteja correta antes de salvar
         self.calcular_nivel()
+        self.progresso_para_proximo_nivel()
         super().save(*args, **kwargs)
-
-
-class Trofeu(models.Model):
-    nome = models.CharField(max_length=100)
-    descricao = models.TextField()
-    imagem = models.ImageField(upload_to='trofeus/', blank=True, null=True)
-    requisito = models.CharField(max_length=200)  # Ex: "Concluir 5 desafios"
-
-    def __str__(self):
-        return self.nome
 
 
 class Equipamento(models.Model):
@@ -76,10 +74,10 @@ class Equipamento(models.Model):
         return self.nome
 
 
-class Desafio(models.Model):
+class Tarefa(models.Model):
     titulo = models.CharField(max_length=100)
     descricao = models.TextField()
-    equipamentos = models.ManyToManyField(Equipamento, related_name='desafios')
+    equipamentos = models.ManyToManyField(Equipamento, related_name='tarefas')
     passos_necessarios = models.PositiveIntegerField(default=1)
     pontos = models.PositiveIntegerField(
         default=0)  # Pontos que o desafio vale
@@ -100,24 +98,24 @@ class UserEquipamento(models.Model):
         return f"{self.user.username} - {self.equipamento.nome}"
 
 
-class UserDesafio(models.Model):
+class UserTarefa(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    desafio = models.ForeignKey(Desafio, on_delete=models.CASCADE)
+    tarefa = models.ForeignKey(Tarefa, on_delete=models.CASCADE)
     passos_concluidos = models.PositiveIntegerField(default=0)
     completo = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.user.username} - {self.desafio.titulo}"
+        return f"{self.user.username} - {self.tarefa.titulo}"
 
     def concluir_passo(self):
         """
-        Marca um passo como concluído e verifica se o desafio foi completado.
+        Marca um passo como concluído e verifica se a tarefa foi completada.
         """
         self.passos_concluidos += 1
-        if self.passos_concluidos >= self.desafio.passos_necessarios:
+        if self.passos_concluidos >= self.tarefa.passos_necessarios:
             self.completo = True
             # Adiciona pontos ao perfil do usuário
             perfil, created = PerfilGamer.objects.get_or_create(user=self.user)
-            perfil.experiencia += self.desafio.pontos
+            perfil.experiencia += self.tarefa.pontos
             perfil.save()
         self.save()

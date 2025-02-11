@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import UserPerfil
+from datetime import date
+from django.core.exceptions import ValidationError
 
 
 class SignUpForm(UserCreationForm):
@@ -49,7 +51,7 @@ class UserPerfilForm(forms.ModelForm):
         widget=forms.DateInput(
             attrs={'class': 'form-control', 'type': 'date'}),
         input_formats=['%Y-%m-%d'],  # Garante o formato correto
-        required=False  # Para evitar erro se o campo estiver vazio
+        required=True  # Para evitar erro se o campo estiver vazio
     )
 
     cep = forms.CharField(
@@ -86,3 +88,15 @@ class UserPerfilForm(forms.ModelForm):
         widget=forms.ClearableFileInput(attrs={'class': 'form-control'}),
         required=False  # Torna o campo opcional
     )
+
+    def clean_data_nascimento(self):
+        data_nascimento = self.cleaned_data.get('data_nascimento')
+        if data_nascimento:
+            hoje = date.today()
+            idade = hoje.year - data_nascimento.year - \
+                ((hoje.month, hoje.day) < (data_nascimento.month, data_nascimento.day))
+
+            if idade < 18:
+                raise ValidationError(
+                    'Você deve ter pelo menos 18 anos para se registrar.')
+        return data_nascimento
