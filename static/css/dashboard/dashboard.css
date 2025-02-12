@@ -48,9 +48,21 @@ body {
 .main-content {
   margin-left: 250px;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
+  display: flex; /* Define o layout como flexível */
   gap: 20px;
+  align-items: flex-start; /* Alinha o topo do conteúdo e do painel */
+}
+
+/* Área Central */
+.col-md-8 {
+  flex: 2; /* Ocupa o espaço restante disponível */
+  width: 100%; /* Garante que ocupe toda a largura restante */
+}
+
+/* Painel Lateral Direito */
+.col-md-4 {
+  width: 300px; /* Define a largura fixa do painel */
+  flex-shrink: 0; /* Impede que o painel diminua de tamanho */
 }
 
 /* Cabeçalho */
@@ -84,10 +96,7 @@ body {
 .row {
   display: flex;
   gap: 20px;
-}
-
-.col-md-8 {
-  flex: 1;
+  width: 100%;
 }
 
 .col-md-4 {
@@ -129,11 +138,16 @@ body {
 
 /* Painel Lateral Direito */
 .right-panel {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
   background-color: white;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  max-height: calc(100vh - 120px);
+  max-height: calc(100vh - 40px); /* Ajusta para não ultrapassar a tela */
+  overflow-y: auto; /* Permite rolagem interna se necessário */
 }
 
 .right-panel .card {

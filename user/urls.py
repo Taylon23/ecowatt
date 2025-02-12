@@ -9,7 +9,7 @@ urlpatterns = [
     path('logout/', AuthViews.LogoutView.as_view(), name="logout"),
     path('perfil/', views.perfil, name="perfil"),
     path('perfil/atualizar/', views.completar_perfil, name='completar-perfil'),
-    path('economia/', views.pagina_economia, name='pagina_economia'),
+    path('economia/', views.pagina_economia, name='pagina-economia'),
 ]
 
 

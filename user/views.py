@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.utils.translation import activate as activate_ptbr
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -11,9 +12,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import SignUpForm
 from .forms import UserPerfilForm
-from .models import UserPerfil, ConsumoMensal
+from .models import UserPerfil, ConsumoMensal, Cupom
 from django.contrib.auth.views import LoginView
-from datetime import date
+import calendar
+import locale
 from django.contrib import messages
 
 
@@ -121,79 +123,75 @@ class CustomLoginView(LoginView):
                 request, 'Você precisa estar logado para acessar esta página.')
         return super().get(request, *args, **kwargs)
 
-
-def gerar_cupom(user):
-    perfil = user.perfil_energia
-    if perfil.cupom:  # Verifica se já existe um cupom
-        return perfil.cupom  # Retorna o cupom existente
-
-    # Gera um novo cupom apenas se não houver um já existente
-    import uuid
-    cupom = str(uuid.uuid4()).split('-')[0].upper()
-    perfil.cupom = cupom
-    perfil.save()
-    return cupom
-
-
 @login_required
 def pagina_economia(request):
     try:
         perfil = request.user.perfil_energia
+        if not perfil.cpf:  # Se o CPF não estiver cadastrado
+            messages.warning(
+                request, "Você precisa completar seu perfil e cadastrar seu CPF para acessar a página de economia.")
+            # Redireciona para completar o perfil
+            return redirect('completar-perfil')
     except UserPerfil.DoesNotExist:
-        messages.error(
-            request, "Perfil de energia não cadastrado. Complete seu cadastro.")
-        return redirect('cadastro_perfil')
+        messages.warning(
+            request, "Você precisa completar seu perfil e cadastrar seu CPF para acessar a página de economia.")
+        # Redireciona para completar o perfil
+        return redirect('completar-perfil')
 
-    mes_atual = date.today().month
-    ano_atual = date.today().year
+    # Configura o locale para português (Brasil)
+    locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
 
-    # Salva ou atualiza o consumo atual
-    consumo_atual_obj, created = ConsumoMensal.objects.get_or_create(
-        perfil=perfil,
-        mes=mes_atual,
-        ano=ano_atual,
-        defaults={'consumo': perfil.consumo_atual}
-    )
+    # Obtém ou cria o consumo atual
+    consumo_atual = ConsumoMensal.objects.filter(usuario=request.user).last()
+    consumo_anterior = None
 
-    if not created:  # Atualiza se já existir
-        consumo_atual_obj.consumo = perfil.consumo_atual
-        consumo_atual_obj.save()
+    if consumo_atual:
+        # Obtém o consumo anterior
+        consumo_anterior = ConsumoMensal.objects.filter(
+            usuario=request.user,
+            ano__lte=consumo_atual.ano,
+            mes__lt=consumo_atual.mes
+        ).order_by('-ano', '-mes').first()
 
-    # Busca o consumo do mês anterior
-    mes_anterior = mes_atual - 1 if mes_atual > 1 else 12
-    ano_anterior = ano_atual if mes_atual > 1 else ano_atual - 1
+        if not consumo_anterior and consumo_atual.mes == 1:
+            consumo_anterior = ConsumoMensal.objects.filter(
+                usuario=request.user,
+                ano=consumo_atual.ano - 1,
+                mes=12
+            ).order_by('-ano', '-mes').first()
 
-    try:
-        consumo_anterior_obj = ConsumoMensal.objects.get(
-            perfil=perfil, mes=mes_anterior, ano=ano_anterior)
-        consumo_anterior = consumo_anterior_obj.consumo
-    except ConsumoMensal.DoesNotExist:
-        consumo_anterior = 0  # Se não houver registro do mês anterior
-
-    economia = consumo_anterior - perfil.consumo_atual
-
-    # Verificação para gerar cupom
-    if mes_atual != perfil.ultimo_consumo_registrado:
-        if economia > 50:
-            cupom = gerar_cupom(request.user)
-            perfil.cupom = cupom  # Salva o cupom no perfil do usuário
-            mensagem_cupom = f"Parabéns! Você ganhou um cupom de desconto: {cupom}"
-        else:
-            mensagem_cupom = "Continue economizando para ganhar um cupom!"
-
-        perfil.ultimo_consumo_registrado = mes_atual
-        perfil.save()
+    # Calcula a economia
+    economia = consumo_atual.calculo_economia() if consumo_atual else None
+    if economia is not None:
+        economia_formatada = f"{abs(economia):.1f}"
     else:
-        mensagem_cupom = f"Seu cupom: {perfil.cupom}" if perfil.cupom else "Continue economizando para ganhar um cupom!"
+        economia_formatada = None
 
-    # Histórico de consumos
+    # Obtém o histórico de consumos
     historico_consumos = ConsumoMensal.objects.filter(
-        perfil=perfil).order_by('-ano', '-mes')
+        usuario=request.user).order_by('-ano', '-mes')
 
+    # Calcula a variação para cada consumo no histórico
+    for consumo in historico_consumos:
+        consumo.variacao = consumo.calcular_variacao()
+
+    # Mensagem do cupom
+    cupom = Cupom.objects.filter(usuario=request.user).last()
+    mensagem_cupom = f"{cupom}" if cupom else "Continue economizando para ganhar um cupom!"
+
+    # Formata os meses
+    # Nome do mês atual
+    mes_atual_nome = calendar.month_name[consumo_atual.mes]
+    mes_anterior_nome = calendar.month_name[consumo_anterior.mes] if consumo_anterior else "Mês Desconhecido"
+
+    # Passa as variáveis para o template
     return render(request, 'pagina_economia.html', {
-        'economia': economia,
-        'mes_atual': consumo_atual_obj.consumo,
-        'mes_anterior': consumo_anterior,
+        'consumo_atual': consumo_atual,
+        'consumo_anterior': consumo_anterior,
         'mensagem_cupom': mensagem_cupom,
         'historico_consumos': historico_consumos,
+        'economia': economia,
+        'economia_formatada': economia_formatada,
+        'mes_atual_nome': mes_atual_nome,
+        'mes_anterior_nome': mes_anterior_nome,
     })

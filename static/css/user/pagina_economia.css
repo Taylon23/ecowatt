@@ -131,6 +131,17 @@
   font-weight: 500;
 }
 
+.economia{
+  background-color: var(--green-accent);
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.economia p{
+  font-size: 1.5em;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
   .card-title {
