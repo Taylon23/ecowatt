@@ -9,6 +9,9 @@ urlpatterns = [
     path('logout/', AuthViews.LogoutView.as_view(), name="logout"),
     path('perfil/', views.perfil, name="perfil"),
     path('perfil/atualizar/', views.completar_perfil, name='completar-perfil'),
+    path('tarefas-concluidas/', views.tarefas_concluidas, name='tarefas-concluidas'),
+    path('historico-consumo/', views.historico_consumo, name='historico-consumo'),
+    path('meus-equipamentos/', views.meus_equipamentos, name='meus-equipamentos'),
     path('economia/', views.pagina_economia, name='pagina-economia'),
 ]
 

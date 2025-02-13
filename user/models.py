@@ -54,7 +54,7 @@ class ConsumoMensal(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     consumo_atual = models.FloatField(
         default=0, help_text="Consumo atual em kWh")
-    mes = models.IntegerField(help_text="Mês do consumo (1-12)", unique=True)
+    mes = models.IntegerField(help_text="Mês do consumo (1-12)")
     ano = models.IntegerField(help_text="Ano do consumo")
 
     def calcular_variacao(self):

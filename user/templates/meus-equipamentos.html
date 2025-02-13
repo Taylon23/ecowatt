@@ -1,0 +1,30 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block link_extras %}
+<link rel="stylesheet" href="{% static 'css/user/meus-equipamentos.css' %}">
+<link rel="stylesheet" href="{% static 'css/user/css-global.css' %}">
+
+{% endblock %}
+
+{% block title %}Meus Equipamentos{% endblock %}
+
+{% block main %}
+<div class="equipamentos-container">
+    <h1>Meus Equipamentos</h1>
+    <div class="equipamentos-list">
+        {% for equipamento in equipamentos %}
+        <div class="equipamento-card">
+            <div class="card-header">
+                <h3>{{ equipamento.equipamento.nome }}</h3>
+            </div>
+            <div class="card-body">
+                <p>{{ equipamento.equipamento.descricao }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p class="sem-equipamentos">Nenhum equipamento registrado.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -92,12 +92,12 @@
               <div class="card-body">
                 <h5 class="card-title">Minha Patente</h5>
                 <div class="patente-badge">
-                  <span class="badge bg-primary"
-                    >{{ request.user.perfil.patente }}</span
+                  <span class="badge bg-primary p-2"
+                    >{{ patente }}</span
                   >
                 </div>
                 <p class="card-text mt-2">
-                  {{ request.user.perfil.descricao_patente }}
+                  {{ descricao_patente }}
                 </p>
               </div>
             </div>
@@ -107,7 +107,7 @@
               <div class="card-body">
                 <h5 class="card-title">Meu Nível</h5>
                 <div class="nivel-badge">
-                  <span class="badge bg-success"
+                  <span class="badge bg-success p-2"
                     >Nível {{ request.user.perfil.nivel }}</span
                   >
                 </div>
@@ -128,9 +128,7 @@
                     role="progressbar"
                     style="width: {{ request.user.perfil.progresso_para_proximo_nivel|floatformat:0 }}%;"
                   >
-                    {{
-                    request.user.perfil.progresso_para_proximo_nivel|floatformat:0
-                    }}%
+                    {{ request.user.perfil.progresso_para_proximo_nivel|floatformat:0 }}%
                   </div>
                 </div>
                 <p>Aumente XP para subir de nivel</p>

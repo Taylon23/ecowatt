@@ -7,13 +7,25 @@
 
 {% block link_extras %}
     <link rel="stylesheet" href="{% static 'css/user/perfil.css' %}" />
-{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/user/css-global.css' %}" />
 
-{% block titulo_dashboard %}
-        <div></div>
-        {% endblock %}
+{% endblock %}
 {% block main %}
 <div class="perfil-container">
+    <div class="d-flex align-items-center justify-content-end">
+        <!-- Ícone de bars com submenu -->
+        <div class="cog-container">
+            <i class="fas fa-bars" id="bars-icon"></i>
+            <!-- Submenu -->
+            <div class="submenu" id="submenu">
+                <ul>
+                    <li><a href="{% url 'tarefas-concluidas' %}"><i class="fas fa-check-circle"></i> Tarefas Concluídas</a></li>
+                    <li><a href="{% url 'historico-consumo' %}"><i class="fas fa-bar-chart"></i> Histórico de Consumo</a></li>
+                    <li><a href="{% url 'meus-equipamentos' %}"><i class="fas fa-plug"></i> Equipamentos</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <h1>Meu Perfil</h1>
     
     <!-- Foto de perfil -->
@@ -61,3 +73,9 @@
     </div>
 </div>
 {% endblock %}
+
+
+{% block script %}
+    <script src="{% static 'js/user/bars.js' %}"></script>
+{% endblock %}
+    

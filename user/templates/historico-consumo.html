@@ -1,0 +1,39 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block link_extras %}
+<link rel="stylesheet" href="{% static 'css/user/historico-consumo.css' %}">
+<link rel="stylesheet" href="{% static 'css/user/css-global.css' %}" />
+{% endblock %}
+
+{% block title %}Histórico de Consumo{% endblock %}
+
+{% block main %}
+<div class="historico-container">
+    <h1>Histórico de Consumo</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Mês/Ano</th>
+                <th>Consumo (kWh)</th>
+                <th>Variação (%)</th>
+                <th>Economia (kWh)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for consumo in consumos %}
+            <tr>
+                <td>{{ consumo.mes }}/{{ consumo.ano }}</td>
+                <td>{{ consumo.consumo_atual }}</td>
+                <td>{{ consumo.calcular_variacao|default:"-" }}</td>
+                <td>{{ consumo.calculo_economia|default:"-" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">Nenhum consumo registrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

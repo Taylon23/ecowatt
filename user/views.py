@@ -13,6 +13,7 @@ from django.http import HttpResponse
 from .forms import SignUpForm
 from .forms import UserPerfilForm
 from .models import UserPerfil, ConsumoMensal, Cupom
+from dashboard import models as modelsDashboard
 from django.contrib.auth.views import LoginView
 import calendar
 import locale
@@ -122,31 +123,47 @@ class CustomLoginView(LoginView):
             messages.error(
                 request, 'Você precisa estar logado para acessar esta página.')
         return super().get(request, *args, **kwargs)
+    
+@login_required
+def tarefas_concluidas(request):
+    # Filtra as tarefas concluídas pelo usuário logado
+    tarefas = modelsDashboard.UserTarefa.objects.filter(user=request.user, completo=True)
+    return render(request, 'tarefas_concluidas.html', {'tarefas': tarefas})
+
+@login_required
+def historico_consumo(request):
+    # Filtra o consumo mensal do usuário logado
+    consumos = ConsumoMensal.objects.filter(usuario=request.user).order_by('-ano', '-mes')
+    return render(request, 'historico-consumo.html', {'consumos': consumos})
+
+@login_required
+def meus_equipamentos(request):
+    # Filtra os equipamentos do usuário logado
+    equipamentos = modelsDashboard.UserEquipamento.objects.filter(user=request.user)
+    return render(request, 'meus-equipamentos.html', {'equipamentos': equipamentos})
+
 
 @login_required
 def pagina_economia(request):
     try:
         perfil = request.user.perfil_energia
-        if not perfil.cpf:  # Se o CPF não estiver cadastrado
+        if not perfil.cpf:
             messages.warning(
                 request, "Você precisa completar seu perfil e cadastrar seu CPF para acessar a página de economia.")
-            # Redireciona para completar o perfil
             return redirect('completar-perfil')
     except UserPerfil.DoesNotExist:
         messages.warning(
             request, "Você precisa completar seu perfil e cadastrar seu CPF para acessar a página de economia.")
-        # Redireciona para completar o perfil
         return redirect('completar-perfil')
 
     # Configura o locale para português (Brasil)
     locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
 
-    # Obtém ou cria o consumo atual
+    # Obtém o consumo atual
     consumo_atual = ConsumoMensal.objects.filter(usuario=request.user).last()
-    consumo_anterior = None
+    consumo_anterior = None  # Inicializa a variável
 
     if consumo_atual:
-        # Obtém o consumo anterior
         consumo_anterior = ConsumoMensal.objects.filter(
             usuario=request.user,
             ano__lte=consumo_atual.ano,
@@ -160,31 +177,25 @@ def pagina_economia(request):
                 mes=12
             ).order_by('-ano', '-mes').first()
 
-    # Calcula a economia
-    economia = consumo_atual.calculo_economia() if consumo_atual else None
-    if economia is not None:
-        economia_formatada = f"{abs(economia):.1f}"
+        economia = consumo_atual.calculo_economia()
+        economia_formatada = f"{abs(economia):.1f}" if economia is not None else "0.0"
+
+        historico_consumos = ConsumoMensal.objects.filter(
+            usuario=request.user).order_by('-ano', '-mes')
+
+        for consumo in historico_consumos:
+            consumo.variacao = consumo.calcular_variacao()
+
+        mes_atual_nome = calendar.month_name[consumo_atual.mes]
+        mes_anterior_nome = calendar.month_name[consumo_anterior.mes] if consumo_anterior else "Mês Desconhecido"
+        cupom = Cupom.objects.filter(usuario=request.user).last()
+        mensagem_cupom = f"{cupom}" if cupom else "Continue economizando para ganhar um cupom!"
     else:
-        economia_formatada = None
+        economia = economia_formatada = None
+        historico_consumos = []
+        mes_atual_nome = mes_anterior_nome = "Mês Desconhecido"
+        mensagem_cupom = "Nenhum consumo registrado ainda."
 
-    # Obtém o histórico de consumos
-    historico_consumos = ConsumoMensal.objects.filter(
-        usuario=request.user).order_by('-ano', '-mes')
-
-    # Calcula a variação para cada consumo no histórico
-    for consumo in historico_consumos:
-        consumo.variacao = consumo.calcular_variacao()
-
-    # Mensagem do cupom
-    cupom = Cupom.objects.filter(usuario=request.user).last()
-    mensagem_cupom = f"{cupom}" if cupom else "Continue economizando para ganhar um cupom!"
-
-    # Formata os meses
-    # Nome do mês atual
-    mes_atual_nome = calendar.month_name[consumo_atual.mes]
-    mes_anterior_nome = calendar.month_name[consumo_anterior.mes] if consumo_anterior else "Mês Desconhecido"
-
-    # Passa as variáveis para o template
     return render(request, 'pagina_economia.html', {
         'consumo_atual': consumo_atual,
         'consumo_anterior': consumo_anterior,

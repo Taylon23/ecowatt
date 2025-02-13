@@ -1,0 +1,26 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block link_extras %}
+<link rel="stylesheet" href="{% static 'css/user/tarefas-concluidas.css' %}">
+<link rel="stylesheet" href="{% static 'css/user/css-global.css' %}">
+{% endblock %}
+
+{% block title %}Tarefas Concluídas{% endblock %}
+
+{% block main %}
+<div class="tarefas-container">
+    <h1><i class="fas fa-check-circle"></i> Tarefas Concluídas</h1>
+    <div class="tarefas-list">
+        {% for tarefa in tarefas %}
+        <div class="tarefa-card">
+            <h3><i class="fas fa-check"></i> {{ tarefa.tarefa.titulo }}</h3>
+            <p>{{ tarefa.tarefa.descricao }}</p>
+            <p>Total de passos completos: {{tarefa.passos_concluidos}}</p>
+        </div>
+        {% empty %}
+        <p class="sem-tarefas">Nenhuma tarefa concluída.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -101,6 +101,27 @@
                 </div>
               </div>
               {% endif %}
+              {% if tarefa.passo4 %}
+              <div
+                class="list-group-item {% if user_tarefa.passos_concluidos >= 4 %}list-group-item-success{% endif %}"
+              >
+                <div class="d-flex justify-content-between align-items-center">
+                  <span>{{ tarefa.passo4 }}</span>
+                  {% if user_tarefa.passos_concluidos >= 4 %}
+                  <span class="badge bg-success"
+                    ><i class="fas fa-check"></i> Concluído</span
+                  >
+                  {% else %}
+                  <a
+                    href="{% url 'concluir-passo' tarefa.id %}"
+                    class="btn btn-sm btn-outline-primary"
+                  >
+                    <i class="fas fa-check"></i> Concluir Passo 4
+                  </a>
+                  {% endif %}
+                </div>
+              </div>
+              {% endif %}
             </div>
           </div>
 
@@ -109,7 +130,7 @@
           <div class="alert alert-success mt-4">
             <h4 class="alert-heading">Parabéns! 🎉</h4>
             <p>
-              Você concluiu este tarefa e ganhou
+              Você concluiu esta tarefa e ganhou
               <strong>{{ tarefa.pontos }} pontos</strong>!
             </p>
           </div>
