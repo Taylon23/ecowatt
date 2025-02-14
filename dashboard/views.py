@@ -100,3 +100,7 @@ def marcar_desafio_completo(request, tarefa_id):
     user_tarefa.completo = True
     user_tarefa.save()
     return redirect('detalhes-tarefa', tarefa_id=tarefa.id)
+
+@login_required
+def configuracoes(request):
+    return render(request,'configuracoes.html')

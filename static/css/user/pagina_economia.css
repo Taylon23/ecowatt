@@ -15,7 +15,6 @@
 }
 
 .card-title {
-  text-align: center;
   margin-bottom: 25px;
   color: var(--text-gray);
   font-size: 1.8em;
@@ -79,12 +78,6 @@
   padding: 15px;
   background-color: #f8f9fa;
   border-radius: 10px;
-}
-
-.mensagem-cupom p {
-  font-size: 1.1em;
-  color: var(--text-gray);
-  margin-bottom: 10px;
 }
 
 .cupom-box {

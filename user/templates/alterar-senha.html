@@ -1,0 +1,51 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block link_extras %}
+<link rel="stylesheet" href="{% static 'css/user/alterar-senha.css' %}">
+<link rel="stylesheet" href="{% static 'css/user/css-global.css' %}">
+
+{% endblock %}
+
+{% block title %}Alterar Senha{% endblock %}
+
+{% block main %}
+<div class="alterar-senha-container">
+    <h1><i class="fas fa-key"></i> Alterar Senha</h1>
+
+    {% if form.non_field_errors %}
+        <div class="error-messages">
+            {% for error in form.non_field_errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="id_old_password">Senha Atual</label>
+            <input type="password" name="old_password" id="id_old_password" required>
+            {{ form.old_password.errors }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_new_password1">Nova Senha</label>
+            <input type="password" name="new_password1" id="id_new_password1" required>
+            {{ form.new_password1.errors }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_new_password2">Confirme a Nova Senha</label>
+            <input type="password" name="new_password2" id="id_new_password2" required>
+            {{ form.new_password2.errors }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> Alterar Senha
+        </button>
+    </form>
+</div>
+
+{% endblock %}

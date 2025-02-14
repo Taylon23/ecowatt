@@ -13,4 +13,6 @@ urlpatterns = [
          views.concluir_passo, name='concluir-passo'),
     path('tarefa/<int:tarefa_id>/completo/',
          views.marcar_desafio_completo, name='marcar-tarefa-completo'),
+    path('configuracoes',views.configuracoes, name='configuracoes'),
+
 ]

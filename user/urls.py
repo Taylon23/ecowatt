@@ -13,6 +13,8 @@ urlpatterns = [
     path('historico-consumo/', views.historico_consumo, name='historico-consumo'),
     path('meus-equipamentos/', views.meus_equipamentos, name='meus-equipamentos'),
     path('economia/', views.pagina_economia, name='pagina-economia'),
+    path('alterar-senha/', views.alterar_senha, name='alterar-senha'),
+    path('deletar-conta/', views.deletar_conta, name='deletar-conta'),
 ]
 
 

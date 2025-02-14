@@ -1,0 +1,91 @@
+/* Container principal para centralizar o conteúdo */
+.deletar-conta-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+/* Estilo para o título */
+.deletar-conta-container h2 {
+  font-size: 2rem;
+  color: #e74c3c;
+  margin-bottom: 20px;
+}
+
+/* Estilo para a descrição */
+.deletar-conta-container p {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 30px;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+/* Formulário de exclusão */
+.deletar-conta-container form {
+  margin-bottom: 20px;
+}
+
+/* Botão de Deletar Conta */
+.deletar-conta-container .btn-danger {
+  background-color: #e74c3c;
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.deletar-conta-container .btn-danger:hover {
+  background-color: #c0392b;
+}
+
+/* Botão de Cancelar */
+.deletar-conta-container .btn-secondary {
+  background-color: #95a5a6;
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.deletar-conta-container .btn-secondary:hover {
+  background-color: #7f8c8d;
+}
+
+/* Espaçamento entre os botões */
+.deletar-conta-container .btn-secondary.mt-3 {
+  margin-top: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .deletar-conta-container {
+    padding: 15px;
+  }
+
+  .deletar-conta-container h2 {
+    font-size: 1.6rem;
+  }
+
+  .deletar-conta-container p {
+    font-size: 1rem;
+  }
+
+  .deletar-conta-container .btn-danger,
+  .deletar-conta-container .btn-secondary {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}

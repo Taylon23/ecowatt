@@ -5,7 +5,8 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.decorators import login_required
 from django.utils.encoding import force_bytes, force_str
-from django.conf import settings
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
@@ -79,6 +80,34 @@ def activate(request, uidb64, token):
         return redirect('login')  # Redireciona para a página de login
     else:
         return HttpResponse("Link de ativação inválido!")
+
+@login_required 
+def alterar_senha(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Mantém o usuário logado após alterar a senha
+            messages.success(request, 'Senha alterada com sucesso!')
+            return redirect('perfil')
+        else:
+            messages.error(request, 'Corrija os erros abaixo.')
+    else:
+        form = PasswordChangeForm(request.user)
+    
+    return render(request, 'alterar-senha.html', {'form': form})
+
+@login_required
+def deletar_conta(request):
+    if request.method == 'POST':
+        # Apaga o usuário autenticado
+        user = request.user
+        user.delete()
+        messages.success(request, "Sua conta foi deletada com sucesso.")
+        return redirect('dashboard')  # Ou qualquer página que você queira redirecionar após a exclusão
+    
+    return render(request, 'deletar-conta.html')
+
 
 
 @login_required
@@ -189,7 +218,7 @@ def pagina_economia(request):
         mes_atual_nome = calendar.month_name[consumo_atual.mes]
         mes_anterior_nome = calendar.month_name[consumo_anterior.mes] if consumo_anterior else "Mês Desconhecido"
         cupom = Cupom.objects.filter(usuario=request.user).last()
-        mensagem_cupom = f"{cupom}" if cupom else "Continue economizando para ganhar um cupom!"
+        mensagem_cupom = f"{cupom.codigo}" if cupom else "Continue economizando para ganhar um cupom!"
     else:
         economia = economia_formatada = None
         historico_consumos = []

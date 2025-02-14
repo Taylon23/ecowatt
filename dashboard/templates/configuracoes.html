@@ -1,0 +1,33 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block title %}Configurações{% endblock %}
+
+{% block link_extras %}
+    <link rel="stylesheet" href="{% static 'css/dashboard/configuracoes.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard/css-global.css' %}">
+
+{% endblock %}
+
+{% block main %}
+<div class="configuracoes-container">
+    <div class="configuracoes-opcoes">
+        <a href="{% url 'alterar-senha' %}" class="configuracao-item">
+             Alterar Senha
+        </a>
+        <a href="{% url 'deletar-conta' %}" class="configuracao-item" onclick="toggleTheme()">
+           Deletar conta
+        </a>
+        <a href="#" class="configuracao-item">
+             Termos e condições
+        </a>
+        {% include 'logout.html' %}
+    </div>
+</div>
+{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'js/main_pages/logout.js' %}"></script>
+{% endblock %}
+    

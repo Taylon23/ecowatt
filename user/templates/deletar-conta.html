@@ -1,0 +1,22 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block title %}Deletar Conta{% endblock %}
+
+{% block link_extras %}
+    <link rel="stylesheet" href="{% static 'css/user/deletar-conta.css' %}">
+{% endblock %}
+    
+{% block main %}
+<div class="deletar-conta-container">
+    <h2>Tem certeza de que deseja deletar sua conta?</h2>
+    <p>Esta ação é irreversível e apagará permanentemente todos os dados associados à sua conta.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Deletar Conta</button>
+    </form>
+
+    <a href="{% url 'configuracoes' %}" class="btn btn-secondary mt-3">Cancelar</a>
+</div>
+{% endblock %}
