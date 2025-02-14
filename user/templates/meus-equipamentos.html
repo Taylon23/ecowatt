@@ -25,6 +25,7 @@
         {% empty %}
         <p class="sem-equipamentos">Nenhum equipamento registrado.</p>
         {% endfor %}
+        <a href="{% url 'selecionar-equipamentos' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Adicionar equipamento</a>
     </div>
 </div>
 {% endblock %}

@@ -41,7 +41,7 @@ h1 {
 }
 
 .equipamento-item.equipamento-selecionado {
-  background-color: var(--blue-button); /* Cor de fundo quando selecionado */
+  background-color: var(--green-light); /* Cor de fundo quando selecionado */
 }
 
 .equipamento-label {

@@ -1,4 +1,5 @@
 <form id="logout-form" action="{% url 'logout' %}" method="POST">
     {% csrf_token %}
+    <i class="fas fa-sign-out"></i>
     <button type="button" onclick="confirmLogout()">Logout</button>
 </form>

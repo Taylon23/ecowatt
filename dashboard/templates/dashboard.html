@@ -27,133 +27,120 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   </head>
   <body>
-
-    
-    {% block sidebar %}
+    <div class="dashboard">
+      {% block sidebar %}
       <!-- Menu Lateral -->
-    <div class="sidebar">
-      <img
-        class="logomarca"
-        src="{% static 'img/main_pages/ECOWATT.png' %}"
-        alt=""
-      />
-      <a href="{% url 'dashboard' %}"><i class="fas fa-tasks"></i> Tarefas</a>
-      <a href="{% url 'pagina-economia' %}"><i class="fas fa-bolt"></i> Economia</a>
-      <a href="{% url 'perfil' %}"><i class="fas fa-user"></i> Perfil</a>
-      <a href="{% url 'configuracoes' %}"><i class="fas fa-cog"></i> Configurações</a>
-    </div>
-    {% endblock %}
-    
-
-    <!-- Conteúdo Principal -->
-    <div class="main-content">
-      <!-- Cabeçalho -->
-      
-
-      <!-- Área Central -->
-      <div class="row">
-        <div class="col-md-8">
-          {% block main %}
-          <!-- Conteúdo principal padrão -->
+      <div class="sidebar">
+        <div class="header-sidebar">
+          <img
+            class="logomarca"
+            src="{% static 'img/main_pages/ECOWATT.png' %}"
+            alt=""
+          />
+          <a href="{% url 'dashboard' %}"
+            ><i class="fas fa-tasks"></i> Tarefas</a
+          >
+          <a href="{% url 'pagina-economia' %}"
+            ><i class="fas fa-bolt"></i> Economia</a
+          >
+          <a href="{% url 'perfil' %}"><i class="fas fa-user"></i> Perfil</a>
+          <a href="{% url 'configuracoes' %}"
+            ><i class="fas fa-cog"></i> Configurações</a
+          >
+        </div>
+        <div class="footer-sidebar">
+          <div class="content-logout">{% include 'logout.html' %}</div>
+        </div>
+      </div>
+      {% endblock %}
+      <main class="main-content">
+        {% block main %}
+          <div class="title_section">
+            <div class="content-titulo-subtitulo">
+              <h2>Pronto(a) para começar?</h2>
+              <p>Ganhe pontos ao completar tarefas! Tem tarefas nova todo dia.</p>
+            </div>
+            <div class="content-img-title">
+              <img src="{% static 'img/main_pages/img-apresentacao-3.png' %}" alt="">
+            </div>
+          </div>
+          
+        <div class="content-tarefas">
+          
           {% if tarefas %}
-          <!-- Loop para exibir os tarefas -->
-          {% for tarefa in tarefas %}
-          <div class="challenge-card">
-            <h3><i class="fas fa-tasks"></i> {{ tarefa.titulo }}</h3>
+            {% for tarefa in tarefas %}
+          <div class="card p-3 card-tarefa">
+            <div class="content-tarefa-pontos">
+              <i class="fas fa-trophy"></i>{{ tarefa.pontos }}
+            </div>
+            <h2>{{ tarefa.titulo }}</h2>
             <p>{{ tarefa.descricao }}</p>
             <a
-              class="btn btn-primary"
               href="{% url 'detalhes-tarefa' tarefa.id %}"
+              class="button"
               >Começar</a
             >
           </div>
-          {% endfor %} {% else %}
-          <!-- Mensagem caso não haja tarefas -->
-          <div class="alert alert-info" role="alert">
-            <h4>
-              <i class="fas fa-info-circle"></i> Nenhuma tarefa disponível
-            </h4>
-            <p>
-              Parece que você já completou todas as tarefas disponíveis ou não
-              há tarefas relacionados aos seus equipamentos.
-            </p>
-            <a
-              href="{% url 'selecionar-equipamentos' %}"
-              class="btn btn-primary"
-            >
-              <i class="fas fa-plus"></i> Cadastrar Equipamentos
-            </a>
-          </div>
-          {% endif %} {% endblock %}
+          {% endfor %}
+          
+          {% else %}
+            <!-- Mensagem caso não haja tarefas -->
+            <div class="alert alert-info" role="alert">
+              <h4>
+                <i class="fas fa-info-circle"></i> Nenhuma tarefa disponível
+              </h4>
+              <p>
+                Parece que você já completou todas as tarefas disponíveis ou não
+                há tarefas relacionados aos seus equipamentos.
+              </p>
+              <a
+                href="{% url 'selecionar-equipamentos' %}"
+                class="btn btn-primary"
+              >
+                <i class="fas fa-plus"></i> Cadastrar Equipamentos
+              </a>
+            </div>
+          {% endif %}
+          
         </div>
+        {% endblock %}
+      </main>
 
-        <!-- Painel Lateral Direito -->
-        <div class="col-md-4">
-          <div class="right-panel">
-            <!-- Exibição da Patente -->
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Minha Patente</h5>
-                <div class="patente-badge">
-                  <span class="badge bg-primary p-2"
-                    >{{ patente }}</span
-                  >
-                </div>
-                <p class="card-text mt-2">
-                  {{ descricao_patente }}
-                </p>
-              </div>
-            </div>
-
-            <!-- Exibição do Nível -->
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Meu Nível</h5>
-                <div class="nivel-badge">
-                  <span class="badge bg-success p-2"
-                    >Nível {{ request.user.perfil.nivel }}</span
-                  >
-                </div>
-                <p class="card-text mt-2">
-                  Continue completando tarefas para subir de nível!
-                </p>
-              </div>
-            </div>
-
-            <!-- Pontuação Atual -->
-            <div class="card mb-3">
-              <div class="card-body">
-                <h4><i class="fas fa-star"></i> Total de XP</h4>
-                <h2>{{ request.user.perfil.experiencia }} XP</h2>
-                <div class="progress mb-3">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    style="width: {{ request.user.perfil.progresso_para_proximo_nivel|floatformat:0 }}%;"
-                  >
-                    {{ request.user.perfil.progresso_para_proximo_nivel|floatformat:0 }}%
-                  </div>
-                </div>
-                <p>Aumente XP para subir de nivel</p>
-              </div>
-            </div>
-
-            <!-- Missão do Dia -->
-            <!-- <div class="card">
-            <div class="card-body">
-                <h5><i class="fas fa-bullseye"></i> Missão do Dia</h5>
-                <p>Ganhe 20 XP usando menos o ar-condicionado!</p>
-            </div>
-        </div> -->
+      {% block painel_direito %}
+      <div class="painel-direito">
+        <div class="content-pontos-nivel">
+          <div class="content-nivel">
+            <i class="fas fa-star"></i><span title="Nivel">{{ request.user.perfil.nivel }}</span>
+          </div>
+          <div class="content-pontos">
+            <i class="fas fa-trophy"></i><span title="Total pontos">{{ request.user.perfil.experiencia }}</span>
           </div>
         </div>
+        <div class="card p-3 card-perfil mb-4 shadow"> <!-- Adicionado shadow -->
+          <h5>Minha patente</h5>
+          <p class="content-patente"> <i class="fas fa-medal"></i> {{ patente }}</p>
+          <p>{{ descricao_patente }}</p>
       </div>
+      
+      <div class="card p-4 card-perfil content-dica shadow"> <!-- Adicionado shadow-lg -->
+          <h5><i class="fas fa-lightbulb"></i> Dicas do dia</h5>
+          <p>{{ dica_aleatoria }}</p>
+      </div>
+
+      </div>
+      {% endblock %}
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/main_pages/logout.js' %}"></script>
+
     {% block script %}{% endblock %}
   </body>
 </html>

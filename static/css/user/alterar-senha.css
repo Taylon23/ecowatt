@@ -1,6 +1,9 @@
 .alterar-senha-container {
-  max-width: 400px;
-  margin: 50px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
   padding: 20px;
   background: #f8f9fa;
   border-radius: 8px;

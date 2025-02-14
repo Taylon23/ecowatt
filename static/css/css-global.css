@@ -1,27 +1,34 @@
 :root {
-    /* Cores do tema */
-    --green-light: #4db9db; 
-    /* Ideal para fundos claros, elementos secundários ou espaços que precisam de um toque suave e natural. */
+  /* Cores do tema */
+  --green-light: #44d593;
+  /* Ideal para fundos claros, elementos secundários ou espaços que precisam de um toque suave e natural. */
 
-    --gray-light:#e6e6e6;
+  --green-background: #48bf6b;
 
-    --text-gray:#484848;
+  --gray-light: #e6e6e6;
 
-    --blue-button:#0d6efd;
+  --text-gray: #393939;
 
-    --blue-button-hover:#6bb1e4;
+  --blue-button: #0d6efd;
 
-    --text-gray-light:#ddd;
+  --purple-button: #5250bd;
 
-    --green-medium-light: #4bc954; 
-    /* Um pouco mais escura que a light, perfeita para hover states, detalhes ou para contrastar com fundos brancos. */
 
-    --green-dark: #067302; 
-    /* Uma cor escura e vibrante, ótima para textos, botões de destaque ou elementos que precisam chamar atenção. */
+  --blue-button-hover: #6bb1e4;
 
-    --green-very-dark: #036221; 
-    /* A mais escura do tema, ideal para textos em fundos claros, rodapés ou áreas que precisam de contraste forte. */
+  --text-gray-light: #b3b3b3;
 
-    --green-accent: #10bf04; 
-    /* Uma cor vibrante e chamativa, perfeita para botões principais, links ou elementos que precisam se destacar. */
+  --red-accent: rgb(214, 64, 64);
+
+  --green-medium-light: #4bc954;
+  /* Um pouco mais escura que a light, perfeita para hover states, detalhes ou para contrastar com fundos brancos. */
+
+  --green-dark: #067302;
+  /* Uma cor escura e vibrante, ótima para textos, botões de destaque ou elementos que precisam chamar atenção. */
+
+  --green-very-dark: #036221;
+  /* A mais escura do tema, ideal para textos em fundos claros, rodapés ou áreas que precisam de contraste forte. */
+
+  --green-accent: #10bf04;
+  /* Uma cor vibrante e chamativa, perfeita para botões principais, links ou elementos que precisam se destacar. */
 }

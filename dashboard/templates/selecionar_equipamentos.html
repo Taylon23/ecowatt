@@ -45,24 +45,22 @@
       <!-- Área de Seleção de Equipamentos -->
       <div class="equipamentos-list">
         {% for equipamento in equipamentos %}
-        <div
-          class="equipamento-item"
-          data-equipamento-id="{{ equipamento.id }}"
-        >
-          <label class="equipamento-label">
-            <input
-              type="checkbox"
-              name="equipamento"
-              value="{{ equipamento.id }}"
-              class="equipamento-checkbox"
-            />
-            <div class="equipamento-content">
-              <div class="equipamento-info">
-                <h5>{{ equipamento.nome }}</h5>
-              </div>
-            </div>
-          </label>
-        </div>
+          <div class="equipamento-item {% if equipamento.id in user_equipamentos %}equipamento-selecionado{% endif %}" data-equipamento-id="{{ equipamento.id }}">
+              <label class="equipamento-label">
+                  <input
+                      type="checkbox"
+                      name="equipamento"
+                      value="{{ equipamento.id }}"
+                      class="equipamento-checkbox"
+                      {% if equipamento.id in user_equipamentos %}checked{% endif %}
+                  />
+                  <div class="equipamento-content">
+                      <div class="equipamento-info">
+                          <h5>{{ equipamento.nome }}</h5>
+                      </div>
+                  </div>
+              </label>
+          </div>
         {% endfor %}
       </div>
 
@@ -79,51 +77,60 @@
     <!-- Script para seleção de equipamentos -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const equipamentosItens =
-          document.querySelectorAll(".equipamento-item");
-        const btnConfirmar = document.getElementById("btn-confirmar");
-        const equipamentosSelecionados = new Set();
+    const equipamentosItens = document.querySelectorAll(".equipamento-item");
+    const btnConfirmar = document.getElementById("btn-confirmar");
+    const equipamentosSelecionados = new Set();
 
-        equipamentosItens.forEach((item) => {
-          const checkbox = item.querySelector(".equipamento-checkbox");
+    // Inicializa o conjunto com os checkboxes já marcados
+    equipamentosItens.forEach((item) => {
+        const checkbox = item.querySelector(".equipamento-checkbox");
+        if (checkbox.checked) {
+            equipamentosSelecionados.add(checkbox.value);
+        }
+    });
 
-          // Marca/desmarca o checkbox ao clicar na div
-          item.addEventListener("click", function () {
+    // Habilita o botão de confirmar se houver checkboxes marcados
+    btnConfirmar.disabled = equipamentosSelecionados.size === 0;
+
+    // Adiciona o evento de clique para alternar a seleção
+    equipamentosItens.forEach((item) => {
+        const checkbox = item.querySelector(".equipamento-checkbox");
+
+        item.addEventListener("click", function () {
             checkbox.checked = !checkbox.checked; // Alterna o estado do checkbox
             const equipamentoId = checkbox.value;
 
             if (checkbox.checked) {
-              equipamentosSelecionados.add(equipamentoId);
-              item.classList.add("equipamento-selecionado"); // Adiciona classe de seleção
+                equipamentosSelecionados.add(equipamentoId); // Adiciona ao conjunto
+                item.classList.add("equipamento-selecionado"); // Adiciona classe de seleção
             } else {
-              equipamentosSelecionados.delete(equipamentoId);
-              item.classList.remove("equipamento-selecionado"); // Remove classe de seleção
+                equipamentosSelecionados.delete(equipamentoId); // Remove do conjunto
+                item.classList.remove("equipamento-selecionado"); // Remove classe de seleção
             }
 
             // Habilita o botão de confirmar se pelo menos um equipamento foi selecionado
             btnConfirmar.disabled = equipamentosSelecionados.size === 0;
-          });
         });
+    });
 
-        btnConfirmar.addEventListener("click", function () {
-          // Envia os equipamentos selecionados para o servidor
-          fetch('{% url "salvar-equipamentos" %}', {
-            // Use o template tag para gerar a URL
+    // Envia os equipamentos selecionados ao clicar no botão de confirmação
+    btnConfirmar.addEventListener("click", function () {
+        fetch('{% url "salvar-equipamentos" %}', {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
-              "X-CSRFToken": "{{ csrf_token }}",
+                "Content-Type": "application/json",
+                "X-CSRFToken": "{{ csrf_token }}",
             },
             body: JSON.stringify({
-              equipamentos: Array.from(equipamentosSelecionados),
+                equipamentos: Array.from(equipamentosSelecionados), // Converte o conjunto para array
             }),
-          }).then((response) => {
+        }).then((response) => {
             if (response.ok) {
-              window.location.href = '{% url "dashboard" %}'; // Redireciona para o dashboard
+                window.location.href = '{% url "dashboard" %}'; // Redireciona para o dashboard
             }
-          });
         });
-      });
+    });
+});
     </script>
   </body>
 </html>

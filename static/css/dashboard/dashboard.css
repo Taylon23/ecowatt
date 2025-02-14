@@ -13,219 +13,191 @@ body {
   object-fit: cover;
 }
 
-/* Menu Lateral */
+.dashboard {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
 .sidebar {
-  width: 250px;
-  height: 100vh;
-  position: fixed;
-  padding: 20px 10px;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-  background-color: white;
-}
-
-.sidebar a {
   display: flex;
-  align-items: center;
-  padding: 15px 10px;
-  color: var(--text-gray);
-  text-decoration: none;
-  font-size: 16px;
-  border-radius: 10px;
-  transition: background-color 0.3s, transform 0.2s;
+  align-items: flex-start;
+  justify-content: space-between;
+  position:fixed;
+  width: 100%;
+  max-width: 250px;
+  flex-direction: column;
+  box-shadow: 2px 8px 16px rgba(0, 0, 0, 0.1);
+  height: 100%;
 }
 
-.sidebar a:hover {
-  background-color: var(--green-accent);
-  transform: translateX(5px);
-}
-
-.sidebar i {
-  margin-right: 15px;
-  font-size: 18px;
-}
-
-/* Conteúdo Principal */
-.main-content {
-  margin-left: 250px;
-  padding: 20px;
-  display: flex; /* Define o layout como flexível */
-  gap: 20px;
-  align-items: flex-start; /* Alinha o topo do conteúdo e do painel */
-}
-
-/* Área Central */
-.col-md-8 {
-  flex: 2; /* Ocupa o espaço restante disponível */
-  width: 100%; /* Garante que ocupe toda a largura restante */
-}
-
-/* Painel Lateral Direito */
-.col-md-4 {
-  width: 300px; /* Define a largura fixa do painel */
-  flex-shrink: 0; /* Impede que o painel diminua de tamanho */
-}
-
-/* Cabeçalho */
-.dashboard-header {
+.header-sidebar {
   display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.dashboard-header h1 {
-  font-size: 28px;
-  color: var(--green-accent);
-}
-
-/* Botão de Sair */
-.btn-danger {
-  background-color: #dc3545;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.btn-danger:hover {
-  background-color: #c82333;
-  transform: translateY(-2px);
-}
-
-/* Área Central */
-.row {
-  display: flex;
-  gap: 20px;
+  flex-direction: column;
   width: 100%;
 }
 
-.col-md-4 {
-  width: 300px;
-}
-
-/* Cards de Desafio */
-.challenge-card {
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-bottom: 20px;
-  text-align: left;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.challenge-card a {
-  color: #fff;
+.header-sidebar a {
   text-decoration: none;
-}
-
-.challenge-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.challenge-card h3 {
-  color: var(--green-very-dark);
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.challenge-card p {
+  padding: 15px 20px;
   color: var(--text-gray);
-  font-size: 14px;
-  margin-bottom: 15px;
+  transition: all 0.3s ease;
+  width: 100%;
 }
 
-/* Painel Lateral Direito */
-.right-panel {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 300px;
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  max-height: calc(100vh - 40px); /* Ajusta para não ultrapassar a tela */
-  overflow-y: auto; /* Permite rolagem interna se necessário */
-}
-
-.right-panel .card {
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.right-panel h4 {
-  color: var(--green-very-dark);
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.right-panel h2 {
-  color: var(--green-accent);
-  font-size: 32px;
-  margin-bottom: 20px;
-}
-
-.right-panel h5 {
-  color: var(--green-very-dark);
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.right-panel p {
-  color: var(--text-gray);
-  font-size: 14px;
-}
-
-.progress-bar {
+.header-sidebar a:hover {
   background-color: var(--green-accent);
+  transform: translateX(1.5px);
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-    padding: 10px;
-  }
+.footer-sidebar {
+  width: 100%;
+}
 
-  .main-content {
-    margin-left: 0;
-    padding: 10px;
-    flex-direction: column;
-  }
+.footer-sidebar .content-logout {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 15px;
+  width: 100%;
+}
 
-  .row {
-    flex-direction: column;
-  }
+.footer-sidebar button {
+  border: none;
+  background: transparent;
+  color: var(--text-gray);
+  transition: all 0.3s ease;
+}
 
-  .col-md-4 {
-    width: 100%;
-    position: relative;
-    top: 0;
-  }
+.content-logout:hover {
+  transform: translateX(1.5px);
+}
 
-  .right-panel {
-    max-height: none;
-  }
+.title_section{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 10px 0;
+  color: var(--text-gray);
+  background-color:var(--green-background) ;
+  border-radius: 10px;
+  box-shadow: 2px 8px 16px rgba(0, 0, 0, 0.1);
+}
 
-  .dashboard-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.content-img-title img{
+  width: 200px;
+}
 
-  .dashboard-header h1 {
-    font-size: 24px;
-  }
+.main-content {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  flex-direction: column;
+  margin-left: 250px;
+  padding: 15px;
+  height: 100%;
+}
 
-  .btn-start {
-    margin-top: 10px;
-  }
+.alert-info{
+  max-width: 600px;
+}
 
-  .challenge-card {
-    margin-bottom: 15px;
-  }
+.content-tarefas{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.card-tarefa{
+  max-width: 500px;
+  box-shadow: 2px 8px 16px rgba(0, 0, 0, 0.1);
+
+}
+
+.content-tarefa-pontos {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.content-tarefa-pontos i {
+  color: var(--green-accent);
+}
+
+.painel-direito {
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 15px 0;
+}
+
+.content-pontos-nivel {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  padding: 10px;
+}
+
+.content-nivel,
+.content-pontos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.content-pontos i {
+  color: var(--green-accent);
+}
+
+.content-nivel i {
+  color: var(--red-accent);
+  font-size: 1em;
+}
+
+.content-pontos span,
+.content-nivel span {
+  font-size: 18px;
+  font-family: "Press Start 2P", serif;
+}
+
+.content-patente {
+  padding: 8px;
+  background-color: var(--green-accent);
+  box-shadow: 2px 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 250px;
+}
+
+.card-perfil {
+  color: var(--text-gray);
+  width: 100%;
+}
+
+.content-dica p{
+  width: 350px;
+}
+
+.button{
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--purple-button);
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 14px;
+  transition: all .3s ease;
+}
+
+.button:hover{
+  filter: brightness(90%);
 }

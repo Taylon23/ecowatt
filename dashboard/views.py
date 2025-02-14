@@ -10,7 +10,13 @@ from .forms import EquipamentoForm
 @login_required
 def selecionar_equipamentos(request):
     equipamentos = Equipamento.objects.all()  # Recupera todos os equipamentos
-    return render(request, 'selecionar_equipamentos.html', {'equipamentos': equipamentos})
+    user_equipamentos = UserEquipamento.objects.filter(user=request.user).values_list(
+        'equipamento_id', flat=True)  # IDs dos equipamentos já selecionados
+    return render(request, 'selecionar_equipamentos.html', {
+        'equipamentos': equipamentos,
+        # Passa os IDs para o template
+        'user_equipamentos': list(user_equipamentos)
+    })
 
 
 @login_required
@@ -47,14 +53,19 @@ def salvar_equipamentos(request):
         data = json.loads(request.body)
         equipamentos_ids = data.get('equipamentos', [])
 
-        # Limpa equipamentos anteriores do usuário
-        UserEquipamento.objects.filter(user=request.user).delete()
-
         # Salva os novos equipamentos selecionados
         for equipamento_id in equipamentos_ids:
             equipamento = Equipamento.objects.get(id=equipamento_id)
-            UserEquipamento.objects.create(
-                user=request.user, equipamento=equipamento)
+            UserEquipamento.objects.update_or_create(
+                user=request.user,
+                equipamento=equipamento,
+                # Atualiza ou cria o registro
+                defaults={'equipamento': equipamento}
+            )
+
+        # Remove equipamentos que não foram selecionados
+        UserEquipamento.objects.filter(user=request.user).exclude(
+            equipamento_id__in=equipamentos_ids).delete()
 
         return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'error'}, status=400)
@@ -101,6 +112,7 @@ def marcar_desafio_completo(request, tarefa_id):
     user_tarefa.save()
     return redirect('detalhes-tarefa', tarefa_id=tarefa.id)
 
+
 @login_required
 def configuracoes(request):
-    return render(request,'configuracoes.html')
+    return render(request, 'configuracoes.html')

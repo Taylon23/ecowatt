@@ -15,7 +15,7 @@
 {% block main %}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div>
             <div class="card economia-card">
                 <div class="card-body">
                     <h2 class="card-title">Seu Desempenho de Economia</h2>
@@ -73,39 +73,6 @@
                     <div class="mensagem-cupom">
                         <h3 class="mb-3">Seu código do cupom</h3>
                         <p class="btn btn-primary p-2">{{ mensagem_cupom }}</p>
-                    </div>
-
-                    <!-- Histórico de Consumo -->
-                    <div class="historico-consumo">
-                        <h3>Histórico de Consumo</h3>
-                        {% if historico_consumos %}
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Mês/Ano</th>
-                                        <th>Consumo (kWh)</th>
-                                        <th>Queda de consumo (%)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for consumo in historico_consumos %}
-                                        <tr>
-                                            <td>{{ consumo.mes }}/{{ consumo.ano }}</td>
-                                            <td>{{ consumo.consumo_atual }}</td>
-                                            <td>
-                                                {% if consumo.variacao is not None %}
-                                                    {{ consumo.variacao|floatformat:1 }}%
-                                                {% else %}
-                                                    -
-                                                {% endif %}
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        {% else %}
-                            <p>Nenhum histórico de consumo disponível.</p>
-                        {% endif %}
                     </div>
                 </div>
             </div>

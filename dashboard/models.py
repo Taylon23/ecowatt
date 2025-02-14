@@ -100,7 +100,7 @@ class UserEquipamento(models.Model):
 
 class UserTarefa(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    tarefa = models.ForeignKey(Tarefa, on_delete=models.CASCADE)
+    tarefa = models.OneToOneField(Tarefa, on_delete=models.CASCADE,unique=True)
     passos_concluidos = models.PositiveIntegerField(default=0)
     completo = models.BooleanField(default=False)
 
@@ -119,3 +119,7 @@ class UserTarefa(models.Model):
             perfil.experiencia += self.tarefa.pontos
             perfil.save()
         self.save()
+
+
+class TextoDicas(models.Model):
+    texto = models.CharField(max_length=300,blank=False)
