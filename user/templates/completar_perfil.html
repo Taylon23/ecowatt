@@ -115,6 +115,17 @@
                 </div>
                 {% endif %}
             </div>
+            <div class="form-group">
+                <label for="id_cidade">Contra contrato</label>
+                {{ form.contra_contrato }}
+                {% if form.contra_contrato.errors %}
+                <div class="error-message">
+                    {% for error in form.contra_contrato.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
 
             <button type="submit" class="btn btn-primary">Atualizar Perfil</button>
         </form>
